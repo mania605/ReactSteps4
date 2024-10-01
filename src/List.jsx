@@ -1,4 +1,4 @@
-function List() {
+const List = () => {
 	return (
 		<ul>
 			<li>list1</li>
@@ -6,6 +6,5 @@ function List() {
 			<li>list3</li>
 		</ul>
 	);
-}
-
+};
 export default List;

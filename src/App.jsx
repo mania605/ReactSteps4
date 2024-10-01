@@ -1,3 +1,4 @@
+import { BtnA, BtnB } from './Btn';
 import List from './List';
 import Title from './Title';
 
@@ -6,6 +7,8 @@ function App() {
 		<>
 			<Title />
 			<List />
+			<BtnA />
+			<BtnB />
 		</>
 	);
 }
