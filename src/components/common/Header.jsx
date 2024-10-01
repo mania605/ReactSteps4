@@ -10,19 +10,19 @@ export default function Header() {
 			<nav>
 				<ul className='gnb'>
 					<li>
-						<a href='#'>MEMBERS</a>
+						<a href='/members'>MEMBERS</a>
 					</li>
 					<li>
-						<a href='#'>GALLERY</a>
+						<a href='/gallery'>GALLERY</a>
 					</li>
 					<li>
-						<a href='#'>YOUTUBE</a>
+						<a href='/youtube'>YOUTUBE</a>
 					</li>
 					<li>
-						<a href='#'>CONTACT</a>
+						<a href='/contact'>CONTACT</a>
 					</li>
 					<li>
-						<a href='#'>POSTS</a>
+						<a href='/posts'>POSTS</a>
 					</li>
 				</ul>
 
