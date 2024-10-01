@@ -1,5 +1,7 @@
 import { FaEnvelope, FaInstagramSquare, FaYoutube } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+//React의 Link컴포넌트를 활용해서 메뉴이동처리 하면
+//불필요한 서버요청 없이 미리 한번에 불러온 컴포넌트를 실시간으로 클라이언트단에서 변경처리 가능
 
 export default function Header() {
 	return (
