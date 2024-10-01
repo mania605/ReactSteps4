@@ -1,3 +1,4 @@
+//npm i react-icons
 .header {
 	width: 100%;
 	padding: 30px 15vw;
@@ -13,11 +14,22 @@
 	}
 
 	nav {
-		ul {
+		display: flex;
+		align-items: center;
+		gap: 100px;
+
+		.gnb {
 			display: flex;
 			gap: 60px;
 			font: 600 0.8rem/1 'raleway';
 			color: #555;
+		}
+
+		.sns {
+			display: flex;
+			font-size: 1rem;
+			color: #888;
+			gap: 20px;
 		}
 	}
 }
