@@ -1,16 +1,13 @@
-import { BtnA, BtnB } from './Btn';
-import List from './List';
-import Title from './Title';
-
-function App() {
+export default function App() {
 	return (
 		<>
-			<Title />
-			<List />
-			<BtnA />
-			<BtnB />
+			<h1 className='tit'>Title</h1>
+
+			<ul>
+				<li>list</li>
+				<li>list</li>
+				<li>list</li>
+			</ul>
 		</>
 	);
 }
-
-export default App;
