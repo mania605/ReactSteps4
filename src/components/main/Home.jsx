@@ -1,9 +1,9 @@
-import Title from '../common/Title';
+import Layout from '../common/Layout';
 
 export default function Home() {
 	return (
-		<main className='home'>
-			<Title>HOME</Title>
-		</main>
+		<Layout title={'HOME'}>
+			<p>Home Page contents come here.</p>
+		</Layout>
 	);
 }
