@@ -1,0 +1,42 @@
+.members {
+	.ceoBox {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin-bottom: 100px;
+
+		.txt {
+			width: 45%;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			align-content: flex-end;
+			padding-bottom: 100px;
+			font-family: 'raleway';
+
+			h2 {
+				width: 100%;
+				text-align: right;
+				font-size: 2.4rem;
+			}
+			p {
+				width: 100%;
+				text-align: right;
+				font-size: 1.6rem;
+			}
+		}
+
+		.pic {
+			width: 50%;
+			height: 65vh;
+			overflow: hidden;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+}

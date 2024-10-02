@@ -7,6 +7,3 @@ export default [
 	{ name: 'Michael Hall', pic: 'michael.jpg', position: 'Backend Dev' },
 	{ name: 'Emma Smith', pic: 'emma.jpg', position: 'Project Manager' }
 ];
-
-//JSX : 화면에 요소를 출력하기 위한 JSX를 반환해주는 컴포넌트 함수 파일
-//JS : 일반적인 데이터 파일

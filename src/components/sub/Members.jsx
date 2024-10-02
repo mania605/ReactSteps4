@@ -38,6 +38,3 @@ export default function Members() {
 		</Layout>
 	);
 }
-//미션
-//위의 7개 배열 중에서 첫번쨰 데이터만 .ceoBox안쪽출력
-//첫번째를 제외한 나머지 6개 데이터만 기존 반복문 구문 안에서 출력
