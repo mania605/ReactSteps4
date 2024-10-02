@@ -22,7 +22,11 @@
 			display: flex;
 			gap: 60px;
 			font: 600 0.8rem/1 'raleway';
-			color: #555;
+			color: #bbb;
+
+			li.on {
+				color: #000;
+			}
 		}
 
 		.sns {
