@@ -1,7 +1,9 @@
+import Title from '../common/Title';
+
 export default function Home() {
 	return (
 		<main className='home'>
-			<h1>Main Page</h1>
+			<Title text={'HOME'} />
 		</main>
 	);
 }
