@@ -1,14 +1,11 @@
-import { FaEnvelope, FaInstagramSquare, FaYoutube } from 'react-icons/fa';
+import { FaBars, FaEnvelope, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 
 export default function Header() {
 	const gnbArr = ['members', 'gallery', 'youtube', 'contact', 'posts'];
-	const snsArr = [FaEnvelope, FaInstagramSquare, FaYoutube];
+	const snsArr = [FaEnvelope, FaInstagram, FaYoutube];
 
 	const { pathname } = useLocation();
-	console.log(pathname);
-	//미션 (1시 20분까지)
-	//위의 pathname값을 활용해서 gnb의 li요소에 on클래스를 붙여서 메뉴명 활성화 로직 구현
 	return (
 		<header className='header'>
 			<h1>
@@ -33,6 +30,8 @@ export default function Header() {
 					))}
 				</ul>
 			</nav>
+
+			<FaBars className='btnMenuToggle' />
 		</header>
 	);
 }
