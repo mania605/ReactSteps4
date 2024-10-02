@@ -5,10 +5,10 @@ export default function Footer() {
 
 			<section>
 				<ul>
-					<li>Family Site</li>
-					<li>Sitemap</li>
-					<li>Contact us</li>
-					<li>Terms & Policy</li>
+					<li>FAMILY SITE</li>
+					<li>SITEMAP</li>
+					<li>CONTACT</li>
+					<li>POLICY</li>
 				</ul>
 				<p>2024 ALPACO &copy; ALL RIGHTS RESERVED.</p>
 			</section>
