@@ -117,3 +117,53 @@
 		}
 	}
 }
+
+@media screen and (max-width: $tablet) {
+	.members {
+		.ceoBox {
+			.txt {
+				width: 100%;
+				padding-bottom: 30px;
+				h2 {
+					font-size: 1.8rem;
+				}
+			}
+			.pic {
+				width: 100%;
+				height: 40vh;
+			}
+		}
+		.memberListBox {
+			.titBox {
+				width: 100%;
+			}
+			ul {
+				width: 100%;
+			}
+			.descBox {
+				width: 100%;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: $mobile) {
+	.members {
+		.ceoBox {
+			margin-bottom: 80px;
+			.pic {
+				height: 30vh;
+			}
+		}
+		.memberListBox {
+			ul {
+				li {
+					width: 47%;
+					.pic {
+						height: 30vw;
+					}
+				}
+			}
+		}
+	}
+}
