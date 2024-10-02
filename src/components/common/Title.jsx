@@ -1,7 +1,7 @@
-export default function Title({ color, text }) {
+export default function Title({ color, text, children }) {
 	return (
 		<h1 className='title' style={{ color: color }}>
-			{text}
+			{children}
 		</h1>
 	);
 }
