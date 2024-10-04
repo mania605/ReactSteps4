@@ -9,7 +9,6 @@ export default function YoutubeDetail() {
 	const { id } = useParams();
 	const [YoutubeVid, setYoutubeVid] = useState(null);
 	const combineText = useCombineText();
-	console.log(YoutubeVid);
 
 	useEffect(() => {
 		const api_key = import.meta.env.VITE_YOUTUBE_API;
@@ -22,13 +21,9 @@ export default function YoutubeDetail() {
 			});
 	}, []);
 
-	//아래와 같이 첫번째 렌더링시에는 YoubutVid상태값이 null인 상태
-	//null요소의 snippet라는 프로퍼티 접근을 하는 것이기 때문에 문법 에러 발생
-	//두번째 렌더링시부터는 상태값이 담겨있으므로 에러발생하지 않음
-	//해결 방법 : 처음 렌더링시 초기 상태값이 비어있을때 오류해결 방법 (Optional chaining)
 	return (
 		<Layout title={YoutubeVid?.snippet.title}>
-			<figure>
+			<figure className='vidFrame'>
 				<iframe
 					width='100%'
 					height='100%'
@@ -41,7 +36,3 @@ export default function YoutubeDetail() {
 		</Layout>
 	);
 }
-
-//미션
-//위에서 반환받은 데이터로 상세 데이터 호출
-//제목, iframe 영상, 본문, 날짜 순으로 출력
