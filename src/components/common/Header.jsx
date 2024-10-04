@@ -6,6 +6,7 @@ export default function Header() {
 	const snsArr = [FaEnvelope, FaInstagram, FaYoutube];
 
 	const { pathname } = useLocation();
+
 	return (
 		<header className='header'>
 			<h1>
