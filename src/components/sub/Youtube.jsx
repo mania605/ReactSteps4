@@ -33,10 +33,12 @@ export default function Youtube() {
 			{Vids.map((vid, idx) => {
 				return (
 					<article key={idx}>
-						<Pic className='thumb' src={vid.snippet.thumbnails.high.url} />
 						<h3>{shortenText(vid.snippet.title, 60)}</h3>
-						<p>{shortenText(vid.snippet.description, 150)}</p>
-						<span>{combineText(vid.snippet.publishedAt.split('T')[0], '-', '.')}</span>
+						<div className='txt'>
+							<p>{shortenText(vid.snippet.description, 150)}</p>
+							<span>{combineText(vid.snippet.publishedAt.split('T')[0], '-', '.')}</span>
+						</div>
+						<Pic className='thumb' src={vid.snippet.thumbnails.high.url} />
 					</article>
 				);
 			})}
