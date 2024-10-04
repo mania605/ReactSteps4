@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import Layout from '../common/Layout';
 import Pic from '../common/Pic';
 import useShortenText from '../../../hooks/useShortenText';
+import useCombineText from '../../../hooks/useCombineText';
 
 export default function Youtube() {
 	const shortenText = useShortenText();
+	const combineText = useCombineText();
 	const [Vids, setVids] = useState([]);
 
 	const fetchYoutube = () => {
@@ -32,9 +34,9 @@ export default function Youtube() {
 				return (
 					<article key={idx}>
 						<Pic className='thumb' src={vid.snippet.thumbnails.high.url} />
-						<h3>{vid.snippet.title.length >= 60 ? vid.snippet.title.substr(0, 60) + '...' : vid.snippet.title}</h3>
-						<p>{vid.snippet.description}</p>
-						<span>{vid.snippet.publishedAt}</span>
+						<h3>{shortenText(vid.snippet.title, 60)}</h3>
+						<p>{shortenText(vid.snippet.description, 150)}</p>
+						<span>{combineText(vid.snippet.publishedAt.split('T')[0], '-', '.')}</span>
 					</article>
 				);
 			})}
