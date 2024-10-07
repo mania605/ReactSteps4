@@ -40,8 +40,12 @@ export default function Gallery() {
 				</section>
 			</Layout>
 
-			{/* 자식 컴포넌트인 모달 안쪽에서 부모인 ModalOpen상태값을 변경해야 되기 때문에 상태변경함수 자체를 전달 */}
 			{ModalOpen && <Modal setModalOpen={setModalOpen}>FLICKR IMAGE</Modal>}
 		</>
 	);
 }
+/*
+	미션 (3시 20분까지)
+	- 모달창 생성시 document.body.style.overflow= 'hidden'으로 처리해서 스크롤기능 비활성화처리
+	- 모달창 제거시 document.body.style.overflow='auto'로 처리해서 스크롤기능 다시 활성화
+*/
