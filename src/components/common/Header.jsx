@@ -36,3 +36,10 @@ export default function Header() {
 		</header>
 	);
 }
+
+/*
+	미션 -
+	Header 컴포넌트에서 모바일 메뉴 토글 버튼 클릭시 
+	common / MobileMenu컴포넌트를 토글 형식으로 열리고 닫기도록 처리
+	Modal.jsx작업 흐름을 참고해서 제작
+*/
