@@ -6,6 +6,8 @@ import Modal from '../common/Modal';
 export default function Gallery() {
 	const [Flickr, setFlickr] = useState([]);
 	const [ModalOpen, setModalOpen] = useState(false);
+	//클릭한 목록요소의 순번을 담을 상태값 생성
+	const [Index, setIndex] = useState(0);
 
 	useEffect(() => {
 		const method = 'flickr.people.getPhotos';
@@ -21,11 +23,6 @@ export default function Gallery() {
 			});
 	}, []);
 
-	//의존성 배열에 ModalOpen 상태값을 연결해서 모달창이 열리고 닫힐때마다
-	//body요소의 스크롤바 기능 여부를 분기처리
-	//정리 : 리액트는 HTML,JS작업방식처럼 직접적인 DOM을 제어하는 방식이 아닌 State의 변경에 따라 간접적으로 기능이 구현되는 패턴을 주로 사용
-	//위와 같이 state에 따라 UI의 기능 화면이 변경되는 로직의 패턴을 사용하면
-	//복잡한 대단위 프로젝트에서 state상태값만 관리하면 되기에 업무 채산성, 효율성이 높아짐
 	useEffect(() => {
 		document.body.style.overflow = ModalOpen ? 'hidden' : 'auto';
 	}, [ModalOpen]);
@@ -36,7 +33,13 @@ export default function Gallery() {
 				<section className='galleryList'>
 					{Flickr.map((data, idx) => {
 						return (
-							<article key={idx} onClick={() => setModalOpen(true)}>
+							<article
+								key={idx}
+								onClick={() => {
+									setModalOpen(true);
+									//각 이미지 목록 클릭시 클릭한 idx순번값을 Index상태값에 저장
+									setIndex(idx);
+								}}>
 								<Pic
 									src={`https://live.staticflickr.com/${data.server}/${data.id}_${data.secret}_z.jpg`}
 									className='pic'
@@ -49,7 +52,23 @@ export default function Gallery() {
 				</section>
 			</Layout>
 
-			{ModalOpen && <Modal setModalOpen={setModalOpen}>FLICKR IMAGE</Modal>}
+			{ModalOpen && (
+				<Modal setModalOpen={setModalOpen}>
+					<Pic
+						//Pic컴포넌트 src값으로 Flickr전체 배열에서 Index상태 순번의 정보값으로 _b 접미사의 큰 이미지 주소를 Pic에 전달해서 호출
+						src={`https://live.staticflickr.com/${Flickr[Index].server}/${Flickr[Index].id}_${Flickr[Index].secret}_b.jpg`}
+						shadow
+					/>
+				</Modal>
+			)}
 		</>
 	);
 }
+
+/*
+	모달안에 반복 이벤트가 발생한 순번의 요소의 정보를 출력하는 패턴
+	
+	1. 순서값을 저장할 상태값 생성
+	2. 반복 요소에 이벤트 발생시 이벤트가 발생한 요소의 순서값을 상태값에 저장
+	3. 모달 안쪽에서 출력해야되는 정보를 순서 상태값에 연동처리
+*/
