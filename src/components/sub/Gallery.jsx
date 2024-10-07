@@ -29,6 +29,7 @@ export default function Gallery() {
 							<Pic
 								src={`https://live.staticflickr.com/${data.server}/${data.id}_${data.secret}_z.jpg`}
 								className='pic'
+								shadow
 							/>
 							<h3>{data.title}</h3>
 						</article>
