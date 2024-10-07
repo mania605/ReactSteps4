@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Layout from '../common/Layout';
 import Pic from '../common/Pic';
+import Modal from '../common/Modal';
 
 export default function Gallery() {
 	const [Flickr, setFlickr] = useState([]);
@@ -21,21 +22,25 @@ export default function Gallery() {
 	}, []);
 
 	return (
-		<Layout title={'GALLERY'}>
-			<section className='galleryList'>
-				{Flickr.map((data, idx) => {
-					return (
-						<article key={idx}>
-							<Pic
-								src={`https://live.staticflickr.com/${data.server}/${data.id}_${data.secret}_z.jpg`}
-								className='pic'
-								shadow
-							/>
-							<h3>{data.title}</h3>
-						</article>
-					);
-				})}
-			</section>
-		</Layout>
+		<>
+			<Layout title={'GALLERY'}>
+				<section className='galleryList'>
+					{Flickr.map((data, idx) => {
+						return (
+							<article key={idx}>
+								<Pic
+									src={`https://live.staticflickr.com/${data.server}/${data.id}_${data.secret}_z.jpg`}
+									className='pic'
+									shadow
+								/>
+								<h3>{data.title}</h3>
+							</article>
+						);
+					})}
+				</section>
+			</Layout>
+
+			<Modal>FLICKR IMAGE</Modal>
+		</>
 	);
 }
