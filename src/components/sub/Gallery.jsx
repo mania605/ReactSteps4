@@ -21,11 +21,18 @@ export default function Gallery() {
 
 	return (
 		<Layout title={'GALLERY'}>
-			<p>Gallery Page contents come here.</p>
+			<section className='galleryList'>
+				{Flickr.map((data, idx) => {
+					return (
+						<article key={idx}>
+							<h3>{data.title}</h3>
+						</article>
+					);
+				})}
+			</section>
 		</Layout>
 	);
 }
-
 /*
 	useState, useEffect 훅을 활용해서 외부 서버데이터를 가져오고 컴포넌트에 렌더링하는 패턴
 	1.외부데이터를 담을 State와 State변경함수를 useState로 부터 생성
