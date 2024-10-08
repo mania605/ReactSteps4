@@ -21,6 +21,11 @@ body {
 	background: #efefef;
 	width: 100%;
 	overflow-x: hidden;
+
+	#root {
+		width: 100%;
+		overflow-x: hidden;
+	}
 }
 ::-webkit-scrollbar {
 	width: 6px;
