@@ -9,7 +9,7 @@ export default function Layout({ title, children }) {
 	const isDetail = pathname.includes('/youtube/');
 
 	useEffect(() => {
-		splitText(ref_title, 0.1);
+		splitText(ref_title, { interval: 0.1 });
 	}, []);
 
 	return (
