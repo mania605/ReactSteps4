@@ -13,10 +13,7 @@ main {
 			transform: scale(3);
 		}
 	}
-}
-
-main.on {
-	h1 {
+	h1.on {
 		span {
 			opacity: 1;
 			transform: scale(1);
