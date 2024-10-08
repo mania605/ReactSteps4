@@ -3,6 +3,11 @@ import memberData from '../../data/memberData';
 import Pic from '../common/Pic';
 
 export default function Members() {
+	const changeColor = () => {
+		const pEl = document.querySelector('.titBox p');
+		pEl.style.color = 'red';
+	};
+
 	return (
 		<Layout title={'MEMBERS'}>
 			<article className='ceoBox'>
@@ -15,10 +20,11 @@ export default function Members() {
 
 			<article className='memberListBox'>
 				<div className='titBox'>
-					<h2>Our Team Members</h2>
+					<h2 onClick={changeColor}>Our Team Members</h2>
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora possimus non ipsa cum. Veritatis, dolore
-						aliquam? Consectetur assumenda dolor labore.
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+						possimus non ipsa cum. Veritatis, dolore aliquam? Consectetur
+						assumenda dolor labore.
 					</p>
 				</div>
 
@@ -42,9 +48,10 @@ export default function Members() {
 				<div className='descBox'>
 					<h2>Lorem ipsum dolor sit.</h2>
 					<p>
-						Lorem ipsum, dolor sit amet consectetur adipisicing elit. A esse cupiditate, vitae deleniti repellat
-						explicabo sit, corrupti beatae dicta, nulla optio corporis alias. Perferendis quidem sapiente minima,
-						quisquam inventore soluta.
+						Lorem ipsum, dolor sit amet consectetur adipisicing elit. A esse
+						cupiditate, vitae deleniti repellat explicabo sit, corrupti beatae
+						dicta, nulla optio corporis alias. Perferendis quidem sapiente
+						minima, quisquam inventore soluta.
 					</p>
 				</div>
 			</article>
