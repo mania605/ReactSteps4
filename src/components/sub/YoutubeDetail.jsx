@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import Layout from '../common/Layout';
 import { useEffect, useState } from 'react';
-import useCombineText from '../../../hooks/useCombineText';
+import useCombineText from '../../hooks/useCombineText';
 
 export default function YoutubeDetail() {
 	const { id } = useParams();
@@ -31,7 +31,9 @@ export default function YoutubeDetail() {
 			</figure>
 
 			<p>{YoutubeVid?.snippet.description}</p>
-			<span>{combineText(YoutubeVid?.snippet.publishedAt.split('T')[0], '-', '.')}</span>
+			<span>
+				{combineText(YoutubeVid?.snippet.publishedAt.split('T')[0], '-', '.')}
+			</span>
 		</Layout>
 	);
 }
