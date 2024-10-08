@@ -37,7 +37,6 @@ export default function Layout({ title, children }) {
 		</main>
 	);
 }
-
 /*
 	slgoan프레임이 활성화되면 (on클래스 붙으면)
 	마스크박스가 왼쪽밖에서 오른쪽밖으로 1초동안 등속이속
