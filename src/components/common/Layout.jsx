@@ -19,3 +19,12 @@ export default function Layout({ title, children }) {
 		</main>
 	);
 }
+
+/*
+	motion 컴포넌트에서 자주 쓰는 스타일 속성
+	x: 가로축 이동 (숫자, 퍼센트는 문자열 처리)
+	y: 세로축 이동
+	scale:확대
+	rotate: 회전
+	opacity: 투명도
+*/
