@@ -1,26 +1,21 @@
 import Layout from '../common/Layout';
 import memberData from '../../data/memberData';
 import Pic from '../common/Pic';
-import { useRef } from 'react';
-
-/*
-	참조객체에 가상돔을 담아 활용하는 패턴 
-	1. useRef로 빈 참조객체 생성
-	2. 원하는 가상돔요소 (JSX El) ref속성으로 참조객체 연결
-	3. 참조객체명.current 로 해당요소를 가져와서 제어
-*/
+import { useRef, useState } from 'react';
 
 export default function Members() {
-	//useRef를 통해서 초기값이 null이 있는 빈 참조 객체를 생성
-	const pEl = useRef(null);
-	console.log(pEl);
+	console.log('Member rendered!!');
+	const refEl = useRef(0);
+	const [Num, setNum] = useState(0);
 
-	//h2가상돔 요소 클릭
-	const changeColor = () => {
-		console.log(pEl);
-		//const pEl = document.querySelector('.titBox p');
-		//참조객체의 가상돔을 제어하면 현재 렌더링 사이클의 최신 가상돔 정보를 제어가능
-		pEl.current.style.color = 'red';
+	const changeRef = () => {
+		console.log('changeRef called');
+		refEl.current = 1;
+	};
+
+	const changeState = () => {
+		console.log('changeState called');
+		setNum(Num + 1);
 	};
 
 	return (
@@ -35,9 +30,8 @@ export default function Members() {
 
 			<article className='memberListBox'>
 				<div className='titBox'>
-					<h2 onClick={changeColor}>Our Team Members</h2>
-					{/* 미리 생성한 빈 참조객체에 담고 싶은 가상돔요소에 ref속성으로 연결 */}
-					<p ref={pEl}>
+					<h2 onClick={changeRef}>Our Team Members</h2>
+					<p onClick={changeState}>
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
 						possimus non ipsa cum. Veritatis, dolore aliquam? Consectetur
 						assumenda dolor labore.
@@ -74,5 +68,13 @@ export default function Members() {
 		</Layout>
 	);
 }
-// 미션 (3시 40분까지)
-// 카페에 있는 멤버페이지 하단 영역(memberListBox)을 최대한 비슷하게 스타일링
+
+/*
+	state
+	- 컴포넌트가 재랜더링 되더라도 값이 사라지지 않고 계속 유지 (이전값을 기억하면서 재활용가능)
+	- 해당 값이 변경되면 자동으로 컴포넌트가 재랜더링됨
+
+	useRef
+	- 컴포넌트가 재랜더링 되더라도 값이 사라지지 않고 계속 유지 (이전값을 기억하면서 재활용가능)
+	- 해당 값이 변경되더라도 컴포넌트를 재렌더링시키지 않음
+*/
