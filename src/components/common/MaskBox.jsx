@@ -36,7 +36,7 @@ export default function MaskBox({
 				style={maskStyle}
 				initial={{ x: '-101%' }}
 				animate={{ x: '101%' }}
-				transition={{ duration, delay }}></motion.div>
+				transition={{ duration, delay, ease: 'linear' }}></motion.div>
 		</div>
 	);
 }
