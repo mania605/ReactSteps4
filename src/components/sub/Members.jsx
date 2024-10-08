@@ -82,5 +82,5 @@ export default function Members() {
 	- 사용예2: 브라우저 리사이즈시 갱신되야되는 브라우저의 폭, 스크롤시 갱신해야 되는 현재 스크롤 위치
 
 	컴포넌트함수가 재랜더링(재호출) 되더라도 state와 useRef의 값을 기억할 수 있는 이유
-	- 자바스크립트 lexical scope이 closure환경을 기반으로 하고 있기 때문
+	- 컴포넌트 함수는 lexical scope의 closure환경을 기반으로한 고차함수 구조로 동작되기 때문
 */
