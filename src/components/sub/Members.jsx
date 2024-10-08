@@ -1,23 +1,9 @@
 import Layout from '../common/Layout';
 import memberData from '../../data/memberData';
 import Pic from '../common/Pic';
-import { useRef, useState } from 'react';
+import MaskBox from '../common/MaskBox';
 
 export default function Members() {
-	console.log('Member rendered!!');
-	const refEl = useRef(0);
-	const [Num, setNum] = useState(0);
-
-	const changeRef = () => {
-		console.log('changeRef called');
-		refEl.current = 1;
-	};
-
-	const changeState = () => {
-		console.log('changeState called');
-		setNum(Num + 1);
-	};
-
 	return (
 		<Layout title={'MEMBERS'}>
 			<article className='ceoBox'>
@@ -25,13 +11,16 @@ export default function Members() {
 					<h2>{memberData[0].name}</h2>
 					<p>{memberData[0].position}</p>
 				</div>
-				<Pic className='pic' src={'/' + memberData[0].pic} shadow />
+
+				<MaskBox style={{ width: '50%', height: '65vh' }} delay={2}>
+					<Pic className='pic' src={'/' + memberData[0].pic} shadow />
+				</MaskBox>
 			</article>
 
 			<article className='memberListBox'>
 				<div className='titBox'>
-					<h2 onClick={changeRef}>Our Team Members</h2>
-					<p onClick={changeState}>
+					<h2>Our Team Members</h2>
+					<p>
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
 						possimus non ipsa cum. Veritatis, dolore aliquam? Consectetur
 						assumenda dolor labore.
