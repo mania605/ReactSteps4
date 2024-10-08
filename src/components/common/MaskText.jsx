@@ -37,3 +37,8 @@ export default function MaskText({ children, duration, delay, color, style }) {
 		</div>
 	);
 }
+/*
+  미션 (5시 30분 까지)
+  - MaskBox.jsx 라는 새로운 컴포넌트 생성
+  - 이미지나 그룹덩어리의 박스요소에 마스크모션 처리
+*/
