@@ -10,13 +10,13 @@ main {
 
 		span {
 			opacity: 0;
-			transform: scale(3);
+			transform: scale(3) rotate(220deg);
 		}
 	}
 	h1.on {
 		span {
 			opacity: 1;
-			transform: scale(1);
+			transform: scale(1) rotate(0deg);
 		}
 	}
 }
