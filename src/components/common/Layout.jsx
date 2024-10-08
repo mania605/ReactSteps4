@@ -23,7 +23,11 @@ export default function Layout({ title, children }) {
 			</MaskText>
 			<br />
 
-			<MaskText duration={0.6} delay={1} color={'red'}>
+			<MaskText
+				duration={0.6}
+				delay={1}
+				color={'red'}
+				style={{ marginTop: 50, fontSize: 80, fontFamily: 'raleway' }}>
 				Lorem ipsum dolor
 			</MaskText>
 

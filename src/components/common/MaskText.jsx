@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export default function MaskText({ children, duration, delay, color }) {
+export default function MaskText({ children, duration, delay, color, style }) {
 	//기본 스타일 객체
 	const frameStyle = {
 		fontSize: '1.2rem',
@@ -20,7 +20,7 @@ export default function MaskText({ children, duration, delay, color }) {
 	};
 
 	return (
-		<div style={frameStyle}>
+		<div style={{ ...frameStyle, ...style }}>
 			<motion.span
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
@@ -31,13 +31,9 @@ export default function MaskText({ children, duration, delay, color }) {
 
 			<motion.div
 				style={maskStyle}
-				initial={{ x: '-100%' }}
-				animate={{ x: '100%' }}
+				initial={{ x: '-101%' }}
+				animate={{ x: '101%' }}
 				transition={{ duration, delay }}></motion.div>
 		</div>
 	);
 }
-/*
-  미션 (4시 30분까지)
-  - 글자크기, 글꼴, 마진 값등 자잘한 스타일을 호출시에 적용가능
-*/
