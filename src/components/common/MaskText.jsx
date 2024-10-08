@@ -9,7 +9,7 @@ export default function MaskText({ children }) {
 		display: 'inline-block',
 		position: 'relative',
 		overflow: 'hidden',
-		marginBottom: 80
+		marginBottom: 20
 	};
 	const maskStyle = {
 		width: '100%',

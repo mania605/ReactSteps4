@@ -21,6 +21,9 @@ export default function Layout({ title, children }) {
 			<MaskText>
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, ad?
 			</MaskText>
+			<br />
+
+			<MaskText>Lorem ipsum dolor</MaskText>
 
 			<motion.section
 				initial={{ opacity: 0, y: 200 }}
