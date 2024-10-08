@@ -7,5 +7,19 @@ main {
 		font: 100 6vmax/1 'raleway';
 		color: #444;
 		margin-bottom: 50px;
+
+		span {
+			opacity: 0;
+			transform: scale(3);
+		}
+	}
+}
+
+main.on {
+	h1 {
+		span {
+			opacity: 1;
+			transform: scale(1);
+		}
 	}
 }

@@ -3,18 +3,22 @@ import useSplitText from '../../hooks/useSplitText';
 import { useEffect, useRef } from 'react';
 
 export default function Layout({ title, children }) {
+	const ref_frame = useRef(null);
 	const ref_title = useRef(null);
-	//커스텀훅으로 핸들러함수 안쪽에서 호출할 수 있는 실제사용가능한 함수 반환받음
 	const splitText = useSplitText();
 	const { pathname } = useLocation();
 	const isDetail = pathname.includes('/youtube/');
 
 	useEffect(() => {
 		splitText(ref_title);
+
+		setTimeout(() => {
+			ref_frame.current.classList.add('on');
+		}, 0);
 	}, []);
 
 	return (
-		<main className={isDetail ? 'detail' : title.toLowerCase()}>
+		<main ref={ref_frame} className={isDetail ? 'detail' : title.toLowerCase()}>
 			<h1 ref={ref_title}>{title}</h1>
 
 			<section>{children}</section>
