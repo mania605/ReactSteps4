@@ -1,11 +1,26 @@
 import Layout from '../common/Layout';
 import memberData from '../../data/memberData';
 import Pic from '../common/Pic';
+import { useRef } from 'react';
+
+/*
+	참조객체에 가상돔을 담아 활용하는 패턴 
+	1. useRef로 빈 참조객체 생성
+	2. 원하는 가상돔요소 (JSX El) ref속성으로 참조객체 연결
+	3. 참조객체명.current 로 해당요소를 가져와서 제어
+*/
 
 export default function Members() {
+	//useRef를 통해서 초기값이 null이 있는 빈 참조 객체를 생성
+	const pEl = useRef(null);
+	console.log(pEl);
+
+	//h2가상돔 요소 클릭
 	const changeColor = () => {
-		const pEl = document.querySelector('.titBox p');
-		pEl.style.color = 'red';
+		console.log(pEl);
+		//const pEl = document.querySelector('.titBox p');
+		//참조객체의 가상돔을 제어하면 현재 렌더링 사이클의 최신 가상돔 정보를 제어가능
+		pEl.current.style.color = 'red';
 	};
 
 	return (
@@ -21,7 +36,8 @@ export default function Members() {
 			<article className='memberListBox'>
 				<div className='titBox'>
 					<h2 onClick={changeColor}>Our Team Members</h2>
-					<p>
+					{/* 미리 생성한 빈 참조객체에 담고 싶은 가상돔요소에 ref속성으로 연결 */}
+					<p ref={pEl}>
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
 						possimus non ipsa cum. Veritatis, dolore aliquam? Consectetur
 						assumenda dolor labore.
