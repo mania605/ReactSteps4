@@ -44,3 +44,11 @@ export default function MaskBox({ children, duration = 0.5, delay = 0, color = '
 		</div>
 	);
 }
+
+/*
+	미션 (10시 50분까지 구현)
+	- 현재 MaskText, MaskBox, 페이지전체(추후 적용예정)에 공통으로 Mask형태의 모션 요소를 활용하고 있음
+	- 해당 마스크 기능만 별도의 컴포넌트로 분리해서 재활용하는 것이 유리
+	- 수행 작업 1. Mask컴포넌트를 따로 Mask.jsx형태로 생성
+	- 수행 작업 2. Mask컴포넌트를 MaskText.jsx,  MaskBox.jsx에 각각 호출해서 코드 정리
+*/
