@@ -12,7 +12,6 @@ export default function Layout({ title, children }) {
 		<>
 			<main className={isDetail ? 'detail' : title.toLowerCase()}>
 				<SplitText delay={0.5}>{title}</SplitText>
-				<br />
 
 				<MaskText delay={1} color={'#444'} style={{ fontSize: 20, fontFamily: 'arial' }}>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, ad?
