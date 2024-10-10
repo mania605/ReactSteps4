@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export default function MaskText({ children, duration, delay, color, style }) {
+export default function MaskText({ children, duration = 0.5, delay = 0, color = '#000', style }) {
 	//component styles
 	const frameStyle = {
 		fontSize: '1.2rem',
@@ -34,21 +34,11 @@ export default function MaskText({ children, duration, delay, color, style }) {
 
 	return (
 		<div style={{ ...frameStyle, ...style }}>
-			<motion.span
-				variants={spanMotion}
-				initial='in'
-				animate='on'
-				exit='out'
-				transition={spanMotion.time}>
+			<motion.span variants={spanMotion} initial='in' animate='on' exit='out' transition={spanMotion.time}>
 				{children}
 			</motion.span>
 
-			<motion.div
-				style={maskStyle}
-				variants={maskMotion}
-				initial='in'
-				animate='on'
-				transition={maskMotion.time}></motion.div>
+			<motion.div style={maskStyle} variants={maskMotion} initial='in' animate='on' transition={maskMotion.time}></motion.div>
 		</div>
 	);
 }

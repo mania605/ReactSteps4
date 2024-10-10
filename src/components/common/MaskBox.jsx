@@ -1,13 +1,7 @@
 import { motion } from 'framer-motion';
 
-export default function MaskBox({
-	children,
-	duration = 0.5,
-	delay = 0,
-	color = '#000',
-	style
-}) {
-	//기본 스타일 객체
+export default function MaskBox({ children, duration = 0.5, delay = 0, color = '#000', style }) {
+	//styles
 	const frameStyle = {
 		display: 'inline-block',
 		position: 'relative',
@@ -21,14 +15,24 @@ export default function MaskBox({
 		backgroundColor: color
 	};
 
+	//motion options
+	const motionBox = {
+		in: { opacity: 0 },
+		on: { opacity: 1 },
+		out: { opacity: 0, transition: { delay: 0 } },
+		time: { duration: 0.01, delay: duration / 2 + delay }
+	};
+
 	return (
 		<div style={{ ...frameStyle, ...style }}>
+			{/* children으로 전달된 요소가 block요소이기 때문 내부 wrapper요소도 div처리 */}
 			<motion.div
 				style={{ width: '100%', height: '100%' }}
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				exit={{ opacity: 0, transition: { delay: 0 } }}
-				transition={{ duration: 0.01, delay: duration / 2 + delay }}>
+				variants={motionBox}
+				initial='in'
+				animate='on'
+				exit='out'
+				transition={motionBox.time}>
 				{children}
 			</motion.div>
 

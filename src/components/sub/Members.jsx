@@ -12,8 +12,10 @@ export default function Members() {
 					<p>{memberData[0].position}</p>
 				</div>
 
-				<MaskBox style={{ width: '50%', height: '65vh' }} delay={2}>
-					<Pic className='pic' src={'/' + memberData[0].pic} shadow />
+				{/* MaskBox 안쪽에 Pic요소가 들어갈 경우 shadow속성 적용 불가: Mask frame자체가 내부 요소를 overflow:hidden 처리하기 때문 */}
+				<MaskBox style={{ width: '50%', height: '65vh' }} delay={1}>
+					{/* 직접 style객체를 props로 전달하여 불필요한 scss구문 추가 없이 스타일 적용 */}
+					<Pic style={{ width: '100%', height: '100%' }} src={'/' + memberData[0].pic} />
 				</MaskBox>
 			</article>
 
@@ -21,8 +23,7 @@ export default function Members() {
 				<div className='titBox'>
 					<h2>Our Team Members</h2>
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-						possimus non ipsa cum. Veritatis, dolore aliquam? Consectetur
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora possimus non ipsa cum. Veritatis, dolore aliquam? Consectetur
 						assumenda dolor labore.
 					</p>
 				</div>
@@ -47,10 +48,8 @@ export default function Members() {
 				<div className='descBox'>
 					<h2>Lorem ipsum dolor sit.</h2>
 					<p>
-						Lorem ipsum, dolor sit amet consectetur adipisicing elit. A esse
-						cupiditate, vitae deleniti repellat explicabo sit, corrupti beatae
-						dicta, nulla optio corporis alias. Perferendis quidem sapiente
-						minima, quisquam inventore soluta.
+						Lorem ipsum, dolor sit amet consectetur adipisicing elit. A esse cupiditate, vitae deleniti repellat explicabo sit, corrupti
+						beatae dicta, nulla optio corporis alias. Perferendis quidem sapiente minima, quisquam inventore soluta.
 					</p>
 				</div>
 			</article>
