@@ -22,10 +22,16 @@
 		textarea {
 			border: none;
 			width: 100%;
-			border-bottom: 1px solid #444;
-			padding: 5px;
+			border-bottom: 1px solid #888;
+			padding: 10px 5px;
 			background: transparent;
 			resize: none;
+
+			//placeholer 요소 안쪽의 텍스트 스타일링
+			&::placeholder {
+				color: orangered;
+				font: 400 0.8rem/1.2 'raleway';
+			}
 		}
 
 		.upper {
