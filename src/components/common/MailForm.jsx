@@ -14,11 +14,13 @@ export default function MailForm() {
 							<input type='text' id='uMail' placeholder='Leave your email' />
 						</span>
 					</div>
+
 					{/* 문의내용 입력받는 textarea 하단 영역 */}
 					<div className='lower'>
 						<label htmlFor='msg'>Message</label>
 						<textarea name='msg' id='msg' placeholder='Leave your message'></textarea>
 					</div>
+
 					{/* 전송,취소 버튼 그룹 */}
 					<nav className='btnSet'>
 						<input type='reset' value='Cancel' />
@@ -26,6 +28,7 @@ export default function MailForm() {
 					</nav>
 				</form>
 			</div>
+
 			<div className='info'>
 				<h2>Information</h2>
 				<p>

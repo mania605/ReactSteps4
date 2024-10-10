@@ -3,12 +3,13 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	margin: 100px 0px; //위아래100 좌우 0
+	margin: 100px 0px;
 
 	.formBox {
 		width: 48%;
-		border-right: 1px sold #bbb;
+		border-right: 1px solid #bbb;
 		padding-right: 8vw;
+
 		label {
 			display: block;
 			font: 500 1rem/1 'orbitron';
@@ -17,23 +18,27 @@
 		}
 
 		input[type='text'],
-		input [tpe='email'],
+		input[type='email'],
 		textarea {
 			border: none;
 			width: 100%;
 			border-bottom: 1px solid #444;
 			padding: 5px;
 			background: transparent;
+			resize: none;
 		}
+
 		.upper {
 			width: 100%;
 			display: flex;
 			justify-content: space-between;
 			margin-bottom: 50px;
+
 			span {
 				display: block;
 				width: 48%;
-				input [type='text'],
+
+				input[type='text'],
 				input[type='email'] {
 					display: block;
 				}
@@ -43,6 +48,7 @@
 			width: 100%;
 			margin-bottom: 10px;
 		}
+
 		.btnSet {
 			display: flex;
 			gap: 5px;
@@ -51,12 +57,13 @@
 				display: inline-block;
 				background: #333;
 				border-radius: 3px;
-				padding: 10px 17px;
-				font: 300 0.7rem/1 'orbitron';
+				padding: 10px 20px;
+				font: 300 0.6rem/1 'orbitron';
+				letter-spacing: 1px;
 				color: #fff;
 				cursor: pointer;
 				border: none;
-				box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.05);
+				box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
 			}
 		}
 	}
