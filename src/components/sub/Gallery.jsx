@@ -10,6 +10,7 @@ export default function Gallery() {
 	const [Index, setIndex] = useState(0);
 
 	//Gallery페이지에만 전용으로 동작할 커스텀 모션 객체 생성
+	//이때 end에 직접 추가해야 했던 delay구문은 제거하고 변경할 스타일 정보값만 전달
 	const customMotion = {
 		init: { opacity: 0, x: 200 },
 		active: { opacity: 1, x: 0 },
