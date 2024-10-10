@@ -1,16 +1,19 @@
 import { motion } from 'framer-motion';
 
-export default function Content({ children, duration = 1, delay = 0 }) {
-	//motion data
-	const { init, active, end, time } = {
+export default function Content({ children, duration = 1, delay = 0, customMotion }) {
+	//컨텐츠영역에 기본적으로 적용될 모션 관련 디폴트 정보객체 준비
+	const defaultMotion = {
 		init: { opacity: 0, y: 200 },
 		active: { opacity: 1, y: 0 },
-		end: { opacity: 0, y: 200, transition: { delay: 0 } },
-		time: { duration: duration, delay: delay }
+		end: { opacity: 0, y: 200, transition: { delay: 0 } }
 	};
 
+	//호출시 props로 전달되는 커스텀 옵셔객체가 있으면 기존 디폴트 객체를 덮어쓰기한 뒤, 비구조화할당으로 바로 추출
+	const { init, active, end } = { ...defaultMotion, ...customMotion };
+
 	return (
-		<motion.div className='content' initial={init} animate={active} exit={end} transition={time}>
+		// 커스텀 모션옵션이 적용된 값을 바로 JSX요소에 적용
+		<motion.div className='content' initial={init} animate={active} exit={end} transition={{ duration: duration, delay: delay }}>
 			{children}
 		</motion.div>
 	);

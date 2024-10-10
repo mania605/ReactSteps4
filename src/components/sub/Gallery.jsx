@@ -5,10 +5,16 @@ import Modal from '../common/Modal';
 import Content from '../common/Content';
 
 export default function Gallery() {
-	console.log('Gallery Component Rendered!!');
 	const [Flickr, setFlickr] = useState([]);
 	const [ModalOpen, setModalOpen] = useState(false);
 	const [Index, setIndex] = useState(0);
+
+	//Gallery페이지에만 전용으로 동작할 커스텀 모션 객체 생성
+	const customMotion = {
+		init: { opacity: 0, x: 200 },
+		active: { opacity: 1, x: 0 },
+		end: { opacity: 0, x: -200 }
+	};
 
 	useEffect(() => {
 		const method = 'flickr.people.getPhotos';
@@ -31,7 +37,8 @@ export default function Gallery() {
 	return (
 		<>
 			<Layout title={'GALLERY'}>
-				<Content delay={1.5}>
+				{/* Content호출시 위에서 준비한 전용 모션 정보 props로 전달 */}
+				<Content delay={1.5} customMotion={customMotion}>
 					<section className='galleryList'>
 						{Flickr.map((data, idx) => {
 							return (
