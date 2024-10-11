@@ -32,7 +32,7 @@ export default function YoutubeDetail() {
 				</figure>
 
 				<p>{YoutubeVid?.snippet.description}</p>
-				<span>{combineText(YoutubeVid?.snippet.publishedAt.split('T')[0], '-', '.')}</span>
+				<span className='date'>{combineText(YoutubeVid?.snippet.publishedAt.split('T')[0], '-', '.')}</span>
 			</Content>
 		</Layout>
 	);
