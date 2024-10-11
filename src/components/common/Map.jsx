@@ -10,6 +10,9 @@ export default function Map() {
 	const ref_mapFrame = useRef(null);
 	const ref_viewFrame = useRef(null);
 	const ref_instMap = useRef(null);
+	//로드뷰 인스턴스가 담길 참조객체 생성
+	const ref_instView = useRef(null);
+	const ref_instClient = useRef(new kakao.maps.RoadviewClient());
 	const ref_info = useRef([
 		{
 			title: 'COEX',
@@ -49,12 +52,20 @@ export default function Map() {
 	};
 
 	useEffect(() => {
-		setTraffic(false);
+		// setTraffic(false);
+		// setRoadview(false);
+		//지점버튼 클릭해서 Index를 기반으로한 위치 인스턴스가 변경될때마다 Traffic, Roadvie상태 초기화해서 일반 지도화면 보이도록 처리
+		[setTraffic, setRoadview].forEach(func => func(false));
 		ref_mapFrame.current.innerHTML = '';
 		ref_instMap.current = new kakao.maps.Map(ref_mapFrame.current, { center: latlng });
 		inst_marker.setMap(ref_instMap.current);
 		[instType, instZoom].forEach(inst => ref_instMap.current.addControl(inst));
 
+		//roadview 인스턴스 생성
+		ref_instView.current = new kakao.maps.Roadview(ref_viewFrame.current);
+		//clientInstance의 getNearestPanoId함수 호출해서 현재 위치 인스턴스값 기준으로
+		//제일 가까운 panoId값을 찾아서 view인스턴스에 바인딩해서 로드뷰 화면에 출력
+		ref_instClient.current.getNearestPanoId(latlng, 50, panoId => ref_instView.current.setPanoId(panoId, latlng));
 		window.addEventListener('resize', initPos);
 		return () => window.removeEventListener('resize', initPos);
 	}, [Index]);
