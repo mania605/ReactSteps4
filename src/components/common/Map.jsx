@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function Map() {
 	const { kakao } = window;
-	const ref_mapFrame = useRef(null);
+	let ref_mapFrame = useRef(null);
 	const [Index, setIndex] = useState(0);
 
 	// 각 지점 정보를 참조객체로 관리
