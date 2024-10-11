@@ -5,7 +5,7 @@ export default function Map() {
 	const ref_mapFrame = useRef(null);
 
 	//위치 인스턴스 생성 (지도, 마커 인스턴스 생성시 필요)
-	const inst_position = new kakao.maps.LatLng(33.450701, 126.570667);
+	const inst_position = new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 	//마커 인스턴스 생성
 	const inst_marker = new kakao.maps.Marker({ position: inst_position });
 
