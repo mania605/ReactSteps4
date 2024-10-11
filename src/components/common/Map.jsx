@@ -59,12 +59,12 @@ export default function Map() {
 
 			<figure ref={ref_mapFrame} className='mapFrame'></figure>
 
-			<nav className='btnset'>
+			<nav className='btnSet'>
 				<ul className='branch'>
 					{ref_info.current.map((el, idx) => (
 						//동적으로 li생성: 클릭한 li의 순서값 idx로 Index상태값 변경
 						//-> 컴포넌트 재랜더링 되면서 변경된 숩너의 정보값으로 지도화면 갱신됨
-						<li key={idx} onClick={() => setIndex(idx)}>
+						<li key={idx} className={idx === Index ? 'on' : ''} onClick={() => setIndex(idx)}>
 							{el.title}
 						</li>
 					))}
