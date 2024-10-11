@@ -5,10 +5,8 @@ export default function Map() {
 	const ref_mapFrame = useRef(null);
 	const [Index, setIndex] = useState(0);
 
-	//지도 인스턴스가 담길 빈 참조객체 생성
 	const ref_instMap = useRef(null);
 
-	//지도 정보 배열 참조객체 등록 및 비구조화할당으로 개별 정보 추출
 	const ref_info = useRef([
 		{
 			title: 'COEX',
@@ -34,19 +32,16 @@ export default function Map() {
 	]);
 	const { latlng, markerImg, markerSize, markerPos } = ref_info.current[Index];
 
-	//마커 인스턴스 생성
 	const inst_marker = new kakao.maps.Marker({
 		position: latlng,
 		image: new kakao.maps.MarkerImage(markerImg, markerSize, markerPos)
 	});
 
-	//지도 위치 중앙으로 초기화 함수
 	const initPos = () => {
 		console.log('initPost called!!');
 		ref_instMap.current.setCenter(latlng);
 	};
 
-	//Index상태값 변경시마다 새로운 지도 인스턴스 반환으로 화면 갱신
 	useEffect(() => {
 		ref_mapFrame.current.innerHTML = '';
 		ref_instMap.current = new kakao.maps.Map(ref_mapFrame.current, { center: latlng });
