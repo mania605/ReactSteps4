@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
+import useThrottle from '../../hooks/useThrottle';
 
 export default function Map() {
 	const { kakao } = window;
@@ -45,6 +46,9 @@ export default function Map() {
 		ref_instMap.current.setCenter(latlng);
 	}, [latlng]);
 
+	//useThrottle커스텀 훅 통해서
+	const throttledInitPos = useThrottle(initPos);
+
 	const createMap = useCallback(() => {
 		ref_mapFrame.current.innerHTML = '';
 		ref_instMap.current = new kakao.maps.Map(ref_mapFrame.current, { center: latlng });
@@ -57,13 +61,12 @@ export default function Map() {
 		ref_instClient.current.getNearestPanoId(latlng, 50, panoId => ref_instView.current.setPanoId(panoId, latlng));
 	}, [kakao, latlng, markerImg, markerSize, markerPos]);
 
-	
 	useEffect(() => {
 		createMap();
 
-		window.addEventListener('resize', initPos);
-		return () => window.removeEventListener('resize', initPos);
-	}, [Index, initPos, createMap]);
+		window.addEventListener('resize', throttledInitPos);
+		return () => window.removeEventListener('resize',throttledInitPos );
+	}, [Index, throttledInitPos , createMap]);
 
 	useEffect(() => {
 		Traffic ? ref_instMap.current.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC) : ref_instMap.current.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
@@ -103,16 +106,7 @@ export default function Map() {
 }
 
 /*
-	리액트에서 함수형 컴포넌트의 개념
-	- 리액트는 클로저환경의 함수형 프로그래밍 기반
-	- 함수형 프로그래밍 : 함수한에 지역변수를 만들고 함수안쪽에서 또다른 함수를 리턴해서 안쪽의 지역변수를 재사용가능하게 유지하는 프로그래밍적 방법
-	- 리액트에서는 함수가 jsx반환 (컴포넌트), 함수가 특정 또다른 기능연산을 위한 함수나, 연산값을 반환 (훅)
-	- 위와 같은 원리를 통해서 리액트에서 useRef를 통한 참조객체, state값이 해당 컴포넌트 함수를 재렌더링(재호출하더라도) 유지됨
-	리액트에서의 메모이제이션
-	- 컴포넌트안쪽에서 활용하지만 반환되지는 않는 특정 값, 함수를 강제로 메모리에 등록해서 재호출될때마다 재연산하지 않도록 처리 
-	- memo : 컴포넌트 자체를 메모이제이션
-	- useMemo : 복잡한 연산과정을 필요로하는 연산된 결과값 (특정 함수의 반환값) 자체를 메모이제이션, 컴포넌트 재랜더링시 같은 값일 경우 기존값 재사용
-	- useCallback 
-	: 함수자체를 메모이제이션, 컴포넌트에 인수로 함수 전달시 같은 내용이란것을 인지시켜 불필요한 재랜더링 방지, 
-	: 코드의 가독성을 위해서 useEffect안쪽의 사용할 내용들을 함수로 묶어서 외부에 관리할때, 해당 함수에 필요한 의존성 배열을 연결할때
+	throttle 
+	- throttle의 개념 : 물리적으로 일정시간동안의 함수 호출을 줄여서 성능개선
+	- throttle 사용하는 주된 경우 : 단기간에 이벤트가 많이 발생하는 resize, scroll, mousemove등에 연결되는 핸들러함수를 throttle처리
 */
