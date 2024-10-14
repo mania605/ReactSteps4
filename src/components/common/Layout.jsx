@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import Mask from './Mask';
 import SplitText from './SplitText';
+import { useEffect } from 'react';
 
 export default function Layout({ title, children }) {
 	const { pathname } = useLocation();
