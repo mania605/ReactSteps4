@@ -5,6 +5,7 @@ import useCombineText from '../../hooks/useCombineText';
 import Content from '../common/Content';
 
 export default function YoutubeDetail() {
+	console.log('detail');
 	const { id } = useParams();
 	const [YoutubeVid, setYoutubeVid] = useState(null);
 	const combineText = useCombineText();
@@ -18,7 +19,7 @@ export default function YoutubeDetail() {
 			.then(json => {
 				setYoutubeVid(json.items[0]);
 			});
-	}, []);
+	}, [id]);
 
 	return (
 		<Layout title={YoutubeVid?.snippet.title}>
