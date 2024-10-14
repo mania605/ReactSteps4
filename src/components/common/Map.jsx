@@ -39,7 +39,7 @@ export default function Map() {
 	const ref_instType = useRef(new kakao.maps.MapTypeControl());
 	const ref_instZoom = useRef(new kakao.maps.ZoomControl());
 
-	//컴포넌트 마운트시에만 전달받을 수 있는 빈 참조객체 생성
+	//컴포넌트 마운트시에만 전달받을 수 있는 빈 참조객체 생성(인덱스 상태값이 변경될 때마다 값이 담겨야 하기 때문에 비워놓기)
 	const ref_mapFrame = useRef(null);
 	const ref_viewFrame = useRef(null);
 	const ref_instMap = useRef(null);

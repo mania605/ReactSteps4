@@ -9,4 +9,5 @@
 	"bracketSpacing": true,
 	"arrowParens": "avoid",
 	"singleAttributePerLine": false
+{	"vscode_custom_css.imports": ["file:///C:UsersmaniaDocumentscustom.css"]}
 }
