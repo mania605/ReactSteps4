@@ -16,8 +16,7 @@ export default function Youtube() {
 		<Layout title={'YOUTUBE'}>
 			<Content delay={1}>
 				{isPending && <p>Loading...</p>}
-				{/* {Vids?.map((vid, idx) => {   */}
-					{Vids?.slice(0, 4).map((vid, idx) => {  // 3개의 항목만 표시
+				{Vids?.map((vid, idx) => {  
 					return (
 						<article key={idx}>
 							<h3>
