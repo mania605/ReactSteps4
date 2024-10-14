@@ -1,20 +1,31 @@
 import { useQuery } from '@tanstack/react-query';
 
 //아래 커스텀훅에서 활용될 fetching함수
-const fetchYoutube = async () => {
-	const api_key = import.meta.env.VITE_YOUTUBE_API;
-	const pid = 'PLHtvRFLN5v-W5bQjvyH8QTdQQhgflJ3nu';
+const fetchYoutube = async ({queryKey}) => {
+console.log(queryKey[1]);
+  const api_key = import.meta.env.VITE_YOUTUBE_API;
+	const baseURL = 'https://www.googleapis.com/youtube/v3/playlistItems';
+  const pidA = 'PLHtvRFLN5v-W5bQjvyH8QTdQQhgflJ3nu';
+  const pidB = 'PLHtvRFLN5v-W5bQjvyH8QTdQQhgflJ3nu';
 	const num = 10;
-	const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${pid}&key=${api_key}&maxResults=${num}`; 
+  let url = '';
 
+	const urlA = `${baseURL}?part=snippet&playlistId=${pidA}&key=${api_key}&maxResults=${num}`; 
+  const urlB = `${baseURL}?part=snippet&playlistId=${pidB}&key=${api_key}&maxResults=${num}`; 
+
+queryKey[1].type === 'A' && (url = urlA);
+queryKey[1].type === 'B' && (url = urlB);
+
+  const data=await fetch(url);
 	const json = await data.json();
 	return json.items; 
 }; 
 
 //useQuery기능이 내장된 실제 호출된 커스텀훅
-export const useYoutubeQuery = () =>{
+export const useYoutubeQuery = (opt={type:'A'}) =>{
+
   return useQuery({
-    queryKey: ['youtubeList'],
+    queryKey: ['youtubeList', opt],
     queryFn: fetchYoutube,
     staleTime: 1000*60,  //1초 x 60 1분
     gcTime: 1000*60
@@ -35,7 +46,7 @@ export const useYoutubeQuery = () =>{
 데이터가 변경되면(요청url인 queryKey값이 달라지면) 다시 새롭게 fetching처리
 
 3. useQuery가 쿼리키를 통해서 관리하는 서버사이드 데이터의 4가지 상태 분류
- -pending: 데이터 요청 후 응답받기까지의 상태
+ -pending: 데이터 요청 후 응답받기까지의 상태 
   -fresh: 데이터를 최신상태로 인식해서 재요청할 필요가 없는 상태
  -stale: 데이터를 오래된 상태로 인식해서 재요청할 필요가 있는 상태
  -inactive: 현재 출력되고 있는 컴포넌트에 사용되고 있지 않는 상태

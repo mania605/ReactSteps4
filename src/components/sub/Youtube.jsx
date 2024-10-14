@@ -9,12 +9,8 @@ import { useYoutubeQuery } from '../../hooks/useYoutube';
 export default function Youtube() {
 	const shortenText = useShortenText();
 	const combineText = useCombineText();
- 
-//useQuery기능이 내장된 유튜브데이터 가져오는 커스텀훅 호출
-//useQuery가 반환하는 결과값중 자수쓰는 프로퍼티 정리
-//data: 실제 반환받은 서버데이터/isPending:요청대기 유무/isError:데이터반환 실패유무/error:데이터 요청 실패시 반환받는 에러 정보 객체
-const {data:Vids, isPending}= useYoutubeQuery();
-console.log(Vids);
+
+	const { data: Vids, isPending } = useYoutubeQuery({ type: 'B' });
 
 	return (
 		<Layout title={'YOUTUBE'}>
