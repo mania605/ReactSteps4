@@ -6,6 +6,12 @@ export default function Layout({ title, children }) {
 	const { pathname } = useLocation();
 	const isDetail = pathname.includes('/youtube/');
 
+
+	useEffect(()=>{
+	window.scrollTo({top:0})	
+	},[]);
+
+
 	return (
 		<>
 			<main className={isDetail ? 'detail' : title.toLowerCase()}>
