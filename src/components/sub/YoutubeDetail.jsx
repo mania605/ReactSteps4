@@ -5,7 +5,6 @@ import useCombineText from '../../hooks/useCombineText';
 import Content from '../common/Content';
 
 export default function YoutubeDetail() {
-	console.log('detail');
 	const { id } = useParams();
 	const [YoutubeVid, setYoutubeVid] = useState(null);
 	const combineText = useCombineText();
@@ -25,11 +24,7 @@ export default function YoutubeDetail() {
 		<Layout title={YoutubeVid?.snippet.title}>
 			<Content delay={1}>
 				<figure className='vidFrame'>
-					<iframe
-						width='100%'
-						height='100%'
-						title='youtube'
-						src={`https://www.youtube.com/embed/${YoutubeVid?.snippet.resourceId.videoId}`}></iframe>
+					<iframe width='100%' height='100%' title='youtube' src={`https://www.youtube.com/embed/${YoutubeVid?.snippet.resourceId.videoId}`}></iframe>
 				</figure>
 
 				<p>{YoutubeVid?.snippet.description}</p>
