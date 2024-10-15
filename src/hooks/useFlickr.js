@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 //Gallery컴포넌트에서 아래 훅 호출한 뒤 데이터 출력
 
 //fetchFn
-//순서4 - useQuery를 통해서 전달된 opt값을 비구조화할등으로 queryKey로 뽑아서 fetching함수 내부로 전달
+//순서4 - useQuery를 통해서 전달된 opt값을 비구조화할당으로 queryKey로 뽑아서 fetching함수 내부로 전달
 const fetchFlickr = async ({ queryKey }) => {
 	console.log(queryKey[1]); //{type:'mine'}
 	const baseURL = 'https://www.flickr.com/services/rest/';
@@ -32,10 +32,9 @@ const fetchFlickr = async ({ queryKey }) => {
 	return json.photos.photo;
 };
 
-//순서2- 갤러리 컴포넌트로부터 전달받은 opt값을 내부 고유 쿼리키 생성하는데 활용
 export const useFlickrQuery = opt => {
 	return useQuery({
-		queryKey: ['flickrQuery', opt],
+		queryKey: ['flickrQuery', opt],//순서2- 갤러리 컴포넌트로부터 전달받은 opt값을 내부 고유 쿼리키 생성하는데 활용
 		queryFn: fetchFlickr, //순서3 - 쿼리키로 전달된 opt값을 fetchFlickr함수에 전달하면서 호출
 		staleTime: 1000 * 60,
 		gcTime: 1000 * 60
