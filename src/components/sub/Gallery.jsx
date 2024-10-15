@@ -59,7 +59,7 @@ export default function Gallery() {
 					</article>
 
 					<section className='galleryList' ref={ref_gallery}>
-						{/* Flickr값이 있을떄 해당 배열값의 갯수가 0이면 검색결과과 없으므로 안내문구 출력 */}
+						{/* Flickr값이 있을떄 해당 배열값의 갯수가 0이면 검색결과가 없으므로 안내문구 출력 */}
 						{Flickr?.length === 0 && <p>해당 검색어의 검색 결과가 없습니다.</p>}
 						{Flickr?.map((data, idx) => {
 							return (
