@@ -8,7 +8,7 @@ export default function Visual() {
 	const { data } = useFlickrQuery({ type: 'mine' });
 	return (
 		<figure className='visual'>
-			<Swiper      spaceBetween={50}       slidesPerView={4}> {/*  spaceBetween은 사이 간격   slidesPerView는 한화면에 몇개씩 나오게 할 지 */}
+			<Swiper      spaceBetween={100}       slidesPerView={4} loop = {true}> {/*  spaceBetween은 사이 간격   slidesPerView는 한화면에 몇개씩 나오게 할 지 */}
 
 				{data?.map((pic, idx) => {
 					if (idx >= 10) return null;
