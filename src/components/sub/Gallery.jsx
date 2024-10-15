@@ -9,10 +9,8 @@ export default function Gallery() {
 	const ref_gallery = useRef(null); 
 	const [ModalOpen, setModalOpen] = useState(false);
 	const [Index, setIndex] = useState(0);
-	//순서1: {type:'mine'}값으로 Type 상태값 초기화
-	const [Type, setType] = useState({ type: 'mine' });
-	//처음 마운트기 위쪽의 상태값으로 data fetching및 반환
-	const { data: Flickr } = useFlickrQuery(Type);
+		const [Type, setType] = useState({ type: 'mine' }); //{type:'mine'}값으로 Type 상태값 초기화
+	const { data: Flickr } = useFlickrQuery(Type);	//처음 마운트기 위쪽의 상태값으로 data fetching및 반환
 
 	const customMotion = {
 		init: { opacity: 0, x: 200 },
@@ -21,21 +19,22 @@ export default function Gallery() {
 	};
 
 	//선생님 필기
-	// const handleSearch = e => {
-	// 	e.preventDefault();
-	// 	console.dir(e.target[0].value);
-	// 	setType({ type: 'search', tag: e.target[0].value });
-	// };
-
-//검색어 비우기 추가한거
-	const handleSearch = e => { 
-		e.preventDefault(); 
-		console.dir(e.target[0].value);
-		const searchTerm = e.target[0].value;
-		if (!searchTerm) return; // 검색어가 없으면 함수 종료
-  	setType({ type: 'search', tag: e.target[0].value });
+	const handleSearch = e => {
+		e.preventDefault();
+		if (!e.target[0].value.trim()) return alert('검색어를 입력하세요!');// 검색어가 없으면 경고창
+		setType({ type: 'search', tag: e.target[0].value });
 		e.target[0].value = '';  // 검색어 제출 후 input 값을 비웁니다.
 	};
+
+// //검색어 비우기 추가한거
+// 	const handleSearch = e => { 
+// 		e.preventDefault(); 
+// 		console.dir(e.target[0].value);
+// 		const searchTerm = e.target[0].value;
+// 		if (!searchTerm) return; // 검색어가 없으면 함수 종료
+//   	setType({ type: 'search', tag: e.target[0].value });
+// 		e.target[0].value = '';  // 검색어 제출 후 input 값을 비웁니다.
+// 	};
 
 	useEffect(() => { 
 		
