@@ -1,6 +1,8 @@
 import { useFlickrQuery } from '../../hooks/useFlickr';
 import Pic from '../common/Pic';
 import { Swiper, SwiperSlide } from 'swiper/react';
+//Autoplay모듈 가져옴
+import {Autoplay} from 'swiper/modules';
 import 'swiper/css';
 import { useState } from 'react';
 
