@@ -7,7 +7,6 @@ import { useQuery } from '@tanstack/react-query';
 //fetchFn
 //순서4 - useQuery를 통해서 전달된 opt값을 비구조화할당으로 queryKey로 뽑아서 fetching함수 내부로 전달
 const fetchFlickr = async ({ queryKey }) => {
-	console.log(queryKey[1]); //{type:'mine'}
 	const baseURL = 'https://www.flickr.com/services/rest/';
 	const method_mine = 'flickr.people.getPhotos';
 	const method_interest = 'flickr.interestingness.getList';
