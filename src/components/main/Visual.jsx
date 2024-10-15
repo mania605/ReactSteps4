@@ -1,22 +1,21 @@
 import { useFlickrQuery } from '../../hooks/useFlickr';
 import Pic from '../common/Pic';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css'; 
+import 'swiper/css';
 
 export default function Visual() {
 	const { data } = useFlickrQuery({ type: 'mine' });
 	return (
 		<figure className='visual'>
-			<Swiper
-				slidesPerView={3}
-				spaceBetween={100}
-				loop={true}
->
+			<Swiper slidesPerView={3} spaceBetween={100} loop={true} centeredSlides={true}>
 				{data?.map((pic, idx) => {
-					if (idx >= 20) return null;
+					if (idx >= 10) return null;
 					return (
 						<SwiperSlide key={idx}>
-							<Pic src={`https://live.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}_b.jpg`} style={{ width: '100%', height: '100%' }} shadow />
+							{/* swiperSlide요소에는 바로 css모션 스타일 적용 비권장 */}
+							<div className='inner'>
+								<Pic src={`https://live.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}_b.jpg`} style={{ width: '100%', height: '100%' }} shadow />
+							</div>
 						</SwiperSlide>
 					);
 				})}
