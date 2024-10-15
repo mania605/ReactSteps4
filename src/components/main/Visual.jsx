@@ -2,11 +2,18 @@ import { useFlickrQuery } from '../../hooks/useFlickr';
 import Pic from '../common/Pic';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { h2 } from 'framer-motion/client';
 
 export default function Visual() {
 	const { data } = useFlickrQuery({ type: 'mine' });
 	return (
 		<figure className='visual'>
+<div className="textBox">
+	{data?.map((el,idx)=>(
+			<h2 key={idx}>{el.title.substr(0,30)}</h2>
+	))}
+</div>
+
 			<Swiper slidesPerView={3} spaceBetween={100} loop={true} centeredSlides={true}>
 				{data?.map((pic, idx) => {
 					if (idx >= 10) return null;

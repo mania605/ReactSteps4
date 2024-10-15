@@ -2,6 +2,18 @@
 	width: 100%;
 	height: 100vh;
 
+	.textBox {
+		position: absolute;
+		width: 30%;
+		left: 5%;
+		top: 30%;
+		h2 {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			font-size: 3vmax;
+		}
+	}
 	.swiper {
 		width: 100%;
 		height: 100%;
