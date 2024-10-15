@@ -10,7 +10,6 @@ export default function Header() {
 	let currentClass = '';
 	if (pathname === '/') currentClass = 'mainHeader';
 	else currentClass = 'header';
-
 	return (
 		<header className={currentClass}>
 			<h1>
@@ -40,6 +39,7 @@ export default function Header() {
 		</header>
 	);
 }
+
 
 /*
 	미션 -

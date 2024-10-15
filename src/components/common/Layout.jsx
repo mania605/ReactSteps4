@@ -20,7 +20,7 @@ export default function Layout({ title, children }) {
 	return (
 		<>
 			<main className={currentClass}>
-				<SplitText delay={0.5}>{title}</SplitText>
+				{pathname !== '/' && <SplitText delay={0.5}>{title}</SplitText>}
 				<section>{children}</section>
 			</main>
 
