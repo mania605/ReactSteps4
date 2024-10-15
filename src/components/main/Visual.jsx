@@ -1,3 +1,4 @@
+
 import { useFlickrQuery } from '../../hooks/useFlickr';
 import Pic from '../common/Pic';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,7 +13,7 @@ export default function Visual() {
 					if (idx >= 3) return null;
 					return (
 						<SwiperSlide key={idx}>
-							<Pic src={`https://live.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}_z.jpg`} style={{ width: '100%', height: '100vh' }} />
+							<Pic src={`https://live.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}_z.jpg`} style={{ width: '100%', height: '100%' }} />
 						</SwiperSlide>
 					);
 				})}
