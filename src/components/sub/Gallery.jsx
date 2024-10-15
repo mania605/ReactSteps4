@@ -5,16 +5,13 @@ import Modal from '../common/Modal';
 import Content from '../common/Content';
 import { useFlickrQuery } from '../../hooks/useFlickr';
 
-export default function Gallery() {
-	//순서1- 갤러리 컴포넌트에 커스텀훅 호출시 전달해야되는 옵션 객체를 인수로 전달
-	const { data } = useFlickrQuery({ type: 'mine' });
-	console.log(data); //리액트쿼리훅이 데이터를 잘 반환하는지 확인
-
-	const ref_gallery = useRef(null);
-	const [Flickr, setFlickr] = useState([]);
+export default function Gallery() { 
+	const ref_gallery = useRef(null); 
 	const [ModalOpen, setModalOpen] = useState(false);
 	const [Index, setIndex] = useState(0);
+
 	const [Type, setType] = useState({ type: 'mine' });
+	const {data:Flickr} =useFlickrQuery(Type);
 
 	const customMotion = {
 		init: { opacity: 0, x: 200 },
@@ -22,48 +19,21 @@ export default function Gallery() {
 		end: { opacity: 0, x: -200 }
 	};
 
-	const fetchFlickr = async opt => {
-		const baseURL = 'https://www.flickr.com/services/rest/';
-		const method_mine = 'flickr.people.getPhotos';
-		const method_interest = 'flickr.interestingness.getList';
-		const method_search = 'flickr.photos.search';
-
-		const flickr_api = import.meta.env.VITE_FLICKR_API;
-		const myID = '197119297@N02';
-		const num = 20;
-		let url = '';
-		const urlMine = `${baseURL}?method=${method_mine}&api_key=${flickr_api}&user_id=${myID}&per_page=${num}&nojsoncallback=1&format=json`;
-		const urlInterest = `${baseURL}?method=${method_interest}&api_key=${flickr_api}&per_page=${num}&nojsoncallback=1&format=json`;
-		const urlSearch = `${baseURL}?method=${method_search}&api_key=${flickr_api}&per_page=${num}&nojsoncallback=1&format=json&tags=${opt.tag}`;
-
-		opt.type === 'mine' && (url = urlMine);
-		opt.type === 'interest' && (url = urlInterest);
-		opt.type === 'search' && (url = urlSearch);
-
-		const data = await fetch(url);
-		const json = await data.json();
-		setFlickr(json.photos.photo);
-	};
-
 	const handleSearch = e => {
 		e.preventDefault();
-		//폼에서 전송 이벤트 발생시 이벤트발생한 form(e.target)의 첫번재 자식 요소인 input요소의 value값을 구해서
-		//tag라는 프로퍼티에 담아서 Type 상태값 변경
-		//해당 값은 자동적으로 fetch함수안쪽의 검색요청 url의 쿼리값으로 등록됨
 		console.dir(e.target[0].value);
 		setType({ type: 'search', tag: e.target[0].value });
 	};
 
-	useEffect(() => {
-		fetchFlickr(Type);
+	useEffect(() => { 
+		
 		ref_gallery.current.classList.remove('on');
-
 		setTimeout(() => {
 			ref_gallery.current.classList.add('on');
 		}, 800);
 	}, [Type]);
 
-	useEffect(() => {
+	useEffect(() => { // 모달 열림 여부에 따라 스크롤 잠금 처리
 		document.body.style.overflow = ModalOpen ? 'hidden' : 'auto';
 	}, [ModalOpen]);
 
@@ -88,7 +58,7 @@ export default function Gallery() {
 					</article>
 
 					<section className='galleryList' ref={ref_gallery}>
-						{Flickr.map((data, idx) => {
+						{Flickr?.map((data, idx) => {
 							return (
 								<article
 									key={idx}
