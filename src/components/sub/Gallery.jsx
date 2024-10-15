@@ -49,7 +49,7 @@ export default function Gallery() {
 	const handleSearch = e => { //기본전송기능을 막으면서 {type:'search', tag:'바다'}라는 객체값으로 Type상태값 변경처리
 		e.preventDefault(); //폼에서 전송 이벤트 발생시 이벤트가 발생한 form요소(e.target)의 첫번째 자식 요소인 input요소의 value값을 구해서
 		console.dir(e.target[0].value);
-if (!searchTerm) return; // 검색어가 없으면 함수 종료
+if ('!e.target[0].value') return; // 검색어가 없으면 함수 종료
 		setType({ type: 'search', tag: e.target[0].value });//tag라는 프로퍼티에 담아서 Type상태값 변경, 해당 값은 자동적으로 fetch함수 안쪽의 검색요청url의 쿼리값으로 등록됨
 e.target[0].value = '';  // 검색어 제출 후 input 값을 비웁니다.
 	};
