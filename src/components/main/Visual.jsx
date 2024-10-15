@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 export default function Visual() {
 	const [Index, setIndex] = useState(0);
-	const { data } = useFlickrQuery({ type: 'mine' });
+	const { data } = useFlickrQuery({ type: 'interest' });
 	return (
 		<figure className='visual'>
 			{/* Img titles */}
