@@ -8,6 +8,7 @@ export default function Gallery() {
 	const [Flickr, setFlickr] = useState([]);
 	const [ModalOpen, setModalOpen] = useState(false);
 	const [Index, setIndex] = useState(0);
+	const [galleryType, setGalleryType] = useState('interest'); // 추가된 상태 변수
 
 	const customMotion = {
 		init: { opacity: 0, x: 200 },
@@ -33,13 +34,13 @@ export default function Gallery() {
 		const json = await data.json();
 		setFlickr(json.photos.photo);
 	};
-	useEffect(() => {
-		fetchFlickr({ type: 'interest' });
-	}, []);
+	// useEffect(() => {
+	// 	fetchFlickr({ type: 'interest' });
+	// }, []);
 
-	useEffect(() => {
-		document.body.style.overflow = ModalOpen ? 'hidden' : 'auto';
-	}, [ModalOpen]);
+	// useEffect(() => {
+	// 	document.body.style.overflow = ModalOpen ? 'hidden' : 'auto';
+	// }, [ModalOpen]);
 
 //미션
 //아래 갤러리 타입 버튼 클릭시 실제 갤러리 타입에 따라 호출
@@ -47,13 +48,24 @@ export default function Gallery() {
 //힌트2 리액트에서 컴포넌트가 재렌더링되려면 무조건 state변경되어야 함.
 
 
+	// galleryType이 변경될 때마다 fetchFlickr 호출
+	useEffect(() => {
+		fetchFlickr({ type: galleryType });
+	}, [galleryType]); // galleryType을 의존성으로 등록
+
+	useEffect(() => {
+		document.body.style.overflow = ModalOpen ? 'hidden' : 'auto';
+	}, [ModalOpen]);
+
+
 	return (
 		<>
 			<Layout title={'GALLERY'}>
 				<Content delay={1.5} customMotion={customMotion}>
 					<ul className="type">
-						<li>My Gallery</li>
-						<li>Interest Gallery</li>
+												{/* 버튼 클릭 시 galleryType 변경 */}
+												<li onClick={() => setGalleryType('mine')}>My Gallery</li>
+												<li onClick={() => setGalleryType('interest')}>Interest Gallery</li>
 					</ul>
 					<section className='galleryList'>
 						{Flickr.map((data, idx) => {
