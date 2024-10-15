@@ -1,5 +1,12 @@
+
 main {
 	width: 100%;
 	padding: 10vh 15vw;
 	min-height: 120vh;
+}
+
+//main페이지 전용 스타일
+main.main {
+	width: 100%;
+	padding: 0px;
 }

@@ -7,8 +7,12 @@ export default function Header() {
 
 	const { pathname } = useLocation();
 
+	let currentClass = '';
+	if (pathname === '/') currentClass = 'mainHeader';
+	else currentClass = 'header';
+
 	return (
-		<header className='header'>
+		<header className={currentClass}>
 			<h1>
 				<Link to={'/'}>ALPACO</Link>
 			</h1>

@@ -44,6 +44,56 @@
 	}
 }
 
+//메인 전용 헤더스타일
+.mainHeader {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 5;
+	width: 100%;
+	padding: 30px 15vw;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #ddd;
+
+	h1 {
+		font: 700 1.2rem/1 'orbitron';
+		color: #333;
+		letter-spacing: 1px;
+	}
+
+	nav {
+		display: flex;
+		align-items: center;
+		gap: 70px;
+
+		.gnb {
+			display: flex;
+			gap: 50px;
+			font: 600 0.8rem/1 'raleway';
+			color: #888;
+
+			li.on {
+				color: #000;
+			}
+		}
+
+		.sns {
+			display: flex;
+			font-size: 1rem;
+			color: #888;
+			gap: 10px;
+		}
+	}
+
+	.btnMenuToggle {
+		font-size: 1.2rem;
+		color: #333;
+		display: none;
+	}
+}
+
 @media screen and (max-width: $tablet) {
 	.header {
 		nav {
