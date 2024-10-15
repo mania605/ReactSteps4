@@ -3,6 +3,7 @@ import Layout from '../common/Layout';
 import Pic from '../common/Pic';
 import Modal from '../common/Modal';
 import Content from '../common/Content';
+// import {useFlickrQuery} from '../../hooks/useFlickr';
 
 export default function Gallery() {
 	const ref_gallery = useRef(null);
@@ -18,7 +19,7 @@ export default function Gallery() {
 	};
 
 
-	const fetchFlickr = async opt => {	//순서3 - 전달된 type상태값이 opt 파라미터로 전달됨 {type:'mine'} / {type:'inertest'}
+	const fetchFlickr = async opt => { 	// {type:'search', tag:'바다'}라는 객체 상태값이 opt로 전달됨
 		const baseURL = 'https://www.flickr.com/services/rest/';
 		const method_mine = 'flickr.people.getPhotos';
 		const method_interest = 'flickr.interestingness.getList';
@@ -30,33 +31,34 @@ export default function Gallery() {
 		let url = '';
 		const urlMine = `${baseURL}?method=${method_mine}&api_key=${flickr_api}&user_id=${myID}&per_page=${num}&nojsoncallback=1&format=json`;
 		const urlInterest = `${baseURL}?method=${method_interest}&api_key=${flickr_api}&per_page=${num}&nojsoncallback=1&format=json`;
+		//검색전용 url값 추가
 		const urlSearch = `${baseURL}?method=${method_search}&api_key=${flickr_api}&per_page=${num}&nojsoncallback=1&format=json&tags=${opt.tag}`;
 
-
-		opt.type === 'mine' && (url = urlMine); //순서4 : 전달되는 type명에 따라서 호출 url이 변경됨
+		opt.type === 'mine' && (url = urlMine);
 		opt.type === 'interest' && (url = urlInterest);
+		//순서5: 전달된 opt값의 type이 search이므로 위에서 준비한 검색 전용 호출 url을 아래쪽 fetch함수에 전달에서 검색 데이터 요청
 		opt.type === 'search' && (url = urlSearch);
 
-		const data = await fetch(url);//순서5 : 실제적으로 변경된 url을 통해서 서버 데이터 요청됨
+		const data = await fetch(url);
 		const json = await data.json();
 		setFlickr(json.photos.photo);
 	};
 
-	const handleSearch = e => {
+	const handleSearch = e => { //기본전송기능을 막으면서 {type:'search', tag:'바다'}라는 객체값으로 Type상태값 변경처리
 		e.preventDefault();
-		setType({ type: 'search', tag: '바다' });
+		console.dir(e.target[0].value);
+		setType({ type: 'search', tag: e.target[0].value });
 	};
 
-	useEffect(() => {
+	useEffect(() => { //Type상태값 변경되면서 Type값은 내부의 fetchFlickr함수의 인수로 전달됨
 		fetchFlickr(Type);
-		ref_gallery.current.classList.remove('on');		//gallery type변경시 일단 갤러리요소에 on을 제거해서 비활성화처리
+		ref_gallery.current.classList.remove('on');
 
 		setTimeout(() => {
-			ref_gallery.current.classList.add('on');		//비활성화 트랜지션 모션시간확보를 위해서 0.8초뒤에 다시 on을 붙여서 활성화 처리
+			ref_gallery.current.classList.add('on');
 		}, 800);
 	}, [Type]);
 
-	
 	useEffect(() => {
 		document.body.style.overflow = ModalOpen ? 'hidden' : 'auto';
 	}, [ModalOpen]);
@@ -74,12 +76,13 @@ export default function Gallery() {
 								Interest Gallery
 							</li>
 						</ul>
-{/*순서1 form안쪽의 button을 클릭하고 inpust에서 엔터치면 자동으로 wrapping요소인 form에 자동으로 submit이벤트 발생됨 */}
-						<form onSubmit={handleSearch}>
+						
+						<form onSubmit={handleSearch}> {/* form안쪽의 button을 클릭하고 input에서 엔터치면 자동으로 wrapping요소인 form에 submit이벤트 발생됨 handleSearch호출 */}
 							<input type='text' placeholder='검색어를 입력하세요.' />
 							<button>search</button>
 						</form>
 					</article>
+
 					<section className='galleryList' ref={ref_gallery}>
 						{Flickr.map((data, idx) => {
 							return (
