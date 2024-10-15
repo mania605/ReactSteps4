@@ -8,7 +8,7 @@ export default function Gallery() {
 	const [Flickr, setFlickr] = useState([]);
 	const [ModalOpen, setModalOpen] = useState(false);
 	const [Index, setIndex] = useState(0);
-	const [galleryType, setGalleryType] = useState('interest'); // 추가된 상태 변수
+	const [Type, setType] = useState({ type: 'mine' });
 
 	const customMotion = {
 		init: { opacity: 0, x: 200 },
@@ -20,6 +20,7 @@ export default function Gallery() {
 		const baseURL = 'https://www.flickr.com/services/rest/';
 		const method_mine = 'flickr.people.getPhotos';
 		const method_interest = 'flickr.interestingness.getList';
+
 		const flickr_api = import.meta.env.VITE_FLICKR_API;
 		const myID = '197119297@N02';
 		const num = 20;
@@ -34,38 +35,27 @@ export default function Gallery() {
 		const json = await data.json();
 		setFlickr(json.photos.photo);
 	};
-	// useEffect(() => {
-	// 	fetchFlickr({ type: 'interest' });
-	// }, []);
 
-	// useEffect(() => {
-	// 	document.body.style.overflow = ModalOpen ? 'hidden' : 'auto';
-	// }, [ModalOpen]);
-
-//미션
-//아래 갤러리 타입 버튼 클릭시 실제 갤러리 타입에 따라 호출
-//힌트1 fetchFlickr 호출시 인수로 전달되는 객체가 변경되면 됨
-//힌트2 리액트에서 컴포넌트가 재렌더링되려면 무조건 state변경되어야 함.
-
-
-	// galleryType이 변경될 때마다 fetchFlickr 호출
 	useEffect(() => {
-		fetchFlickr({ type: galleryType });
-	}, [galleryType]); // galleryType을 의존성으로 등록
+		fetchFlickr(Type);
+	}, [Type]);
 
 	useEffect(() => {
 		document.body.style.overflow = ModalOpen ? 'hidden' : 'auto';
 	}, [ModalOpen]);
 
+	// 미션 (10시 30분 까지)
+	// 아래 갤러리 타입 버튼 클릭시 실제 갤러리 타입에 따라 호출
+	// 힌트1- fetchFlickr호출시 인수로 전달되는 객체가 변경되면 됨
+	// 힌트2- 리액트에서 컴포넌트가 재랜더링되려면 무조건 state변경되야 됨
 
 	return (
 		<>
 			<Layout title={'GALLERY'}>
 				<Content delay={1.5} customMotion={customMotion}>
-					<ul className="type">
-												{/* 버튼 클릭 시 galleryType 변경 */}
-												<li onClick={() => setGalleryType('mine')}>My Gallery</li>
-												<li onClick={() => setGalleryType('interest')}>Interest Gallery</li>
+					<ul className='type'>
+						<li onClick={() => setType({ type: 'mine' })}>My Gallery</li>
+						<li onClick={() => setType({ type: 'interest' })}>Interest Gallery</li>
 					</ul>
 					<section className='galleryList'>
 						{Flickr.map((data, idx) => {
