@@ -33,7 +33,6 @@ export default function Gallery() {
 		const urlSearch = `${baseURL}?method=${method_search}&api_key=${flickr_api}&per_page=${num}&nojsoncallback=1&format=json&tags=${opt.tag}`;
 
 
-
 		opt.type === 'mine' && (url = urlMine); //순서4 : 전달되는 type명에 따라서 호출 url이 변경됨
 		opt.type === 'interest' && (url = urlInterest);
 		opt.type === 'search' && (url = urlSearch);
@@ -45,7 +44,7 @@ export default function Gallery() {
 
 	const handleSearch = e => {
 		e.preventDefault();
-		setType({ type: 'search', tag: 'sky' });
+		setType({ type: 'search', tag: '바다' });
 	};
 
 	useEffect(() => {
@@ -58,7 +57,7 @@ export default function Gallery() {
 	}, [Type]);
 
 	
-	useEffect(() => {//순서2-의존성 배열에 Type상태가 등록되어 있기 때문에 순서1에 의해서 type정보가 변경되면 내부에 있는 fetchFlickr에 타입상태값이 인수로 전달됨-> 데이터 호출
+	useEffect(() => {
 		document.body.style.overflow = ModalOpen ? 'hidden' : 'auto';
 	}, [ModalOpen]);
 
@@ -68,13 +67,14 @@ export default function Gallery() {
 				<Content delay={1.5} customMotion={customMotion}>
 					<article className='controller'>
 						<ul className='type'>
-							<li onClick={() => setType({ type: 'mine' })} className={Type.type === 'mine' && 'on'}>{/* 순서1: 각각의 버튼 클릭시 setType상태변경함수 호출해서 아래와 같이 type객체정보를 변경요청 */}
+							<li onClick={() => setType({ type: 'mine' })} className={Type.type === 'mine' && 'on'}>
 								My Gallery
 							</li>
 							<li onClick={() => setType({ type: 'interest' })} className={Type.type === 'interest' && 'on'}>
 								Interest Gallery
 							</li>
 						</ul>
+{/*순서1 form안쪽의 button을 클릭하고 inpust에서 엔터치면 자동으로 wrapping요소인 form에 자동으로 submit이벤트 발생됨 */}
 						<form onSubmit={handleSearch}>
 							<input type='text' placeholder='검색어를 입력하세요.' />
 							<button>search</button>
