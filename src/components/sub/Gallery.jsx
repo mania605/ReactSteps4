@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Layout from '../common/Layout';
 import Pic from '../common/Pic';
 import Modal from '../common/Modal';
 import Content from '../common/Content';
 
 export default function Gallery() {
+	const ref_gallery = useRef(null);
 	const [Flickr, setFlickr] = useState([]);
 	const [ModalOpen, setModalOpen] = useState(false);
 	const [Index, setIndex] = useState(0);
@@ -38,16 +39,18 @@ export default function Gallery() {
 
 	useEffect(() => {
 		fetchFlickr(Type);
+		//gallery type변경시 일단 갤러리요소에 on을 제거해서 비활성화처리
+		ref_gallery.current.classList.remove('on');
+
+		//비활성화 트랜지션 모션시간확보를 위해서 0.8초뒤에 다시 on을 붙여서 활성화 처리
+		setTimeout(() => {
+			ref_gallery.current.classList.add('on');
+		}, 800);
 	}, [Type]);
 
 	useEffect(() => {
 		document.body.style.overflow = ModalOpen ? 'hidden' : 'auto';
 	}, [ModalOpen]);
-
-	// 미션 (10시 30분 까지)
-	// 아래 갤러리 타입 버튼 클릭시 실제 갤러리 타입에 따라 호출
-	// 힌트1- fetchFlickr호출시 인수로 전달되는 객체가 변경되면 됨
-	// 힌트2- 리액트에서 컴포넌트가 재랜더링되려면 무조건 state변경되야 됨
 
 	return (
 		<>
@@ -57,7 +60,7 @@ export default function Gallery() {
 						<li onClick={() => setType({ type: 'mine' })}>My Gallery</li>
 						<li onClick={() => setType({ type: 'interest' })}>Interest Gallery</li>
 					</ul>
-					<section className='galleryList'>
+					<section className='galleryList' ref={ref_gallery}>
 						{Flickr.map((data, idx) => {
 							return (
 								<article

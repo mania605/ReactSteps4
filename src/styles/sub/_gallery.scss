@@ -1,10 +1,10 @@
 .gallery {
-	.type{
+	.type {
 		display: flex;
 		margin: 60px 0px;
 		gap: 20px;
 
-		li{
+		li {
 			padding: 10px 20px;
 			border-radius: 4px;
 			background: #444;
@@ -12,14 +12,22 @@
 			color: #fff;
 			letter-spacing: 1px;
 			cursor: pointer;
-
 		}
 	}
+
 	.galleryList {
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
+		opacity: 0;
+		transform: translateY(100px);
+		transition: 0.5s;
+
+		&.on {
+			opacity: 1;
+			transform: translateY(0px);
+		}
 
 		article {
 			width: 22%;
