@@ -5,12 +5,12 @@ import Modal from '../common/Modal';
 import Content from '../common/Content';
 import { useFlickrQuery } from '../../hooks/useFlickr';
 
-export default function Gallery() { 
-	const ref_gallery = useRef(null); 
+export default function Gallery() {
+	const ref_gallery = useRef(null);
 	const [ModalOpen, setModalOpen] = useState(false);
 	const [Index, setIndex] = useState(0);
-		const [Type, setType] = useState({ type: 'mine' }); //{type:'mine'}값으로 Type 상태값 초기화
-	const { data: Flickr } = useFlickrQuery(Type);	//처음 마운트기 위쪽의 상태값으로 data fetching및 반환
+	const [Type, setType] = useState({ type: 'mine' });
+	const { data: Flickr } = useFlickrQuery(Type);
 
 	const customMotion = {
 		init: { opacity: 0, x: 200 },
@@ -18,33 +18,22 @@ export default function Gallery() {
 		end: { opacity: 0, x: -200 }
 	};
 
-	//선생님 필기
 	const handleSearch = e => {
 		e.preventDefault();
-		if (!e.target[0].value.trim()) return alert('검색어를 입력하세요!');// 검색어가 없으면 경고창
+		if (!e.target[0].value.trim()) return alert('검색어를 입력해주세요.');
 		setType({ type: 'search', tag: e.target[0].value });
-		e.target[0].value = '';  // 검색어 제출 후 input 값을 비웁니다.
+		e.target[0].value = '';
 	};
 
-// //검색어 비우기 추가한거
-// 	const handleSearch = e => { 
-// 		e.preventDefault(); 
-// 		console.dir(e.target[0].value);
-// 		const searchTerm = e.target[0].value;
-// 		if (!searchTerm) return; // 검색어가 없으면 함수 종료
-//   	setType({ type: 'search', tag: e.target[0].value });
-// 		e.target[0].value = '';  // 검색어 제출 후 input 값을 비웁니다.
-// 	};
-
-	useEffect(() => { 
-		
+	useEffect(() => {
 		ref_gallery.current.classList.remove('on');
+
 		setTimeout(() => {
 			ref_gallery.current.classList.add('on');
 		}, 800);
 	}, [Type]);
 
-	useEffect(() => { // 모달 열림 여부에 따라 스크롤 잠금 처리
+	useEffect(() => {
 		document.body.style.overflow = ModalOpen ? 'hidden' : 'auto';
 	}, [ModalOpen]);
 
@@ -54,10 +43,11 @@ export default function Gallery() {
 				<Content delay={1.5} customMotion={customMotion}>
 					<article className='controller'>
 						<ul className='type'>
-							<li onClick={() => setType({ type: 'mine' })} className={Type.type === 'mine' && 'on'}>
+							{/* className을 조건처리할때는 &&연산자 사용불가 : className에는 boolean이 아닌 문자값이 와야됨 */}
+							<li onClick={() => setType({ type: 'mine' })} className={Type.type === 'mine' ? 'on' : ''}>
 								My Gallery
 							</li>
-							<li onClick={() => setType({ type: 'interest' })} className={Type.type === 'interest' && 'on'}>
+							<li onClick={() => setType({ type: 'interest' })} className={Type.type === 'interest' ? 'on' : ''}>
 								Interest Gallery
 							</li>
 						</ul>
@@ -69,6 +59,8 @@ export default function Gallery() {
 					</article>
 
 					<section className='galleryList' ref={ref_gallery}>
+						{/* Flickr값이 있을떄 해당 배열값의 갯수가 0이면 검색결과과 없으므로 안내문구 출력 */}
+						{Flickr?.length === 0 && <p>해당 검색어의 검색 결과가 없습니다.</p>}
 						{Flickr?.map((data, idx) => {
 							return (
 								<article

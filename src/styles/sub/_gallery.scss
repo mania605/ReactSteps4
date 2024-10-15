@@ -57,11 +57,14 @@
 		justify-content: space-between;
 		opacity: 0;
 		transform: translateY(100px);
-		transition: 0.5s;
+		transition: 0s;
+		// 갤러리 목록 사라질때 모션처리 제거 (사라질때 변경된 데이터가 보이는 문제 해결위함)
 
 		&.on {
 			opacity: 1;
 			transform: translateY(0px);
+			transition: 0.5s;
+			//갤러리가 보일때만 0.5초 전환모션 처리
 		}
 
 		article {
