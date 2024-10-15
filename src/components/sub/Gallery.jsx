@@ -56,10 +56,20 @@ export default function Gallery() {
 		<>
 			<Layout title={'GALLERY'}>
 				<Content delay={1.5} customMotion={customMotion}>
-					<ul className='type'>
-						<li onClick={() => setType({ type: 'mine' })} className={Type.type ==='mine'&& 'on'}>My Gallery</li>
-						<li onClick={() => setType({ type: 'interest' })}className={Type.type ==='interest'&& 'on'}>Interest Gallery</li>
-					</ul>
+					<article className='controller'>
+						<ul className='type'>
+							<li onClick={() => setType({ type: 'mine' })} className={Type.type === 'mine' && 'on'}>
+								My Gallery
+							</li>
+							<li onClick={() => setType({ type: 'interest' })} className={Type.type === 'interest' && 'on'}>
+								Interest Gallery
+							</li>
+						</ul>
+						<form>
+							<input type='text' placeholder='검색어를 입력하세요.' />
+							<button>Serach</button>
+						</form>
+					</article>
 					<section className='galleryList' ref={ref_gallery}>
 						{Flickr.map((data, idx) => {
 							return (
