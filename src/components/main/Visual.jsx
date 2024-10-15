@@ -2,19 +2,25 @@ import { useFlickrQuery } from '../../hooks/useFlickr';
 import Pic from '../common/Pic';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { h2 } from 'framer-motion/client';
+import { useState } from 'react';
 
 export default function Visual() {
+	const [Index, setIndex] = useState(0);
 	const { data } = useFlickrQuery({ type: 'mine' });
 	return (
 		<figure className='visual'>
-<div className="textBox">
-	{data?.map((el,idx)=>(
-			<h2 key={idx}>{el.title.substr(0,30)}</h2>
-	))}
-</div>
+			{/* Img titles */}
+			<div className='textBox'>
+				{data?.map((el, idx) => (
+					<h2 key={idx} className={Index === idx ? 'on' : ''}>
+						{el.title.substr(0, 30)}
+					</h2>
+				))}
+			</div>
 
-			<Swiper slidesPerView={3} spaceBetween={100} loop={true} centeredSlides={true}>
+			{/* Img Pics */}
+			{/* onSlideChange 이벤트 발생시 내부 순서값 구하는 프로퍼티로 index (loop:x), realIndex (loop: 0) */}
+			<Swiper slidesPerView={3} spaceBetween={100} loop={true} centeredSlides={true} onSlideChange={el => setIndex(el.realIndex)}>
 				{data?.map((pic, idx) => {
 					if (idx >= 10) return null;
 					return (
