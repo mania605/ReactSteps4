@@ -1,8 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 
 export default function MobileMenu() {
+	const [MobileOpen, setMobileOpen] = useState(false);
+
 	const { initial, animate, exit, transition } = {
 		initial: { x: -300, opacity: 0 },
 		animate: { x: 0, opacity: 1 },
@@ -10,7 +12,15 @@ export default function MobileMenu() {
 		transition: { duraition: 0.5 }
 	};
 
-	const [MobileOpen, setMobileOpen] = useState(false);
+	const closePanel = () => {
+		console.log('closePanel');
+		window.innerWidth >= 1000 && setMobileOpen(false);
+	};
+
+	useEffect(() => {
+		window.addEventListener('resize', closePanel);
+		return () => window.removeEventListener('resize', closePanel);
+	}, []);
 
 	return (
 		<>
@@ -28,10 +38,3 @@ export default function MobileMenu() {
 		</>
 	);
 }
-
-/*
-	모바일패널을 효율적으로 관리하기 위해서 다음의 순서로 작업 진행
-	- 모바일패널과 호출버튼을 MobilePanel이라는 컴포넌트안에 모두 추가
-	- motion.aside라는 모바일 패널자체가 컴포넌트 언마운트시에도 모션 끝날때까지 기다리기 위해 AnimatePresence로 감싸줌
-	- scss에서 btnToggle만 tablet이하에서만 보이도록 처리
-*/
