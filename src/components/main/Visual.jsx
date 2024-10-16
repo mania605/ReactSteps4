@@ -1,17 +1,25 @@
 import { useFlickrQuery } from '../../hooks/useFlickr';
 import Pic from '../common/Pic';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
-//Autoplay 모듈 가져옴
 import { Autoplay, Pagination } from 'swiper/modules';
 import { useState } from 'react';
-import 'swiper/css';
 import { FaPlay } from 'react-icons/fa';
+//Virtual 모듈 가져옴
+import { Virtual } from 'swiper/modules';
+import 'swiper/css';
+//virtual css 가져옴
+import 'swiper/css/virtual';
 
 function BtnStart() {
 	const swiper = useSwiper();
 
 	return (
-		<button hidden={swiper.autoplay.running} className='btnStart' onClick={() => swiper.autoplay.start()}>
+		<button
+			hidden={swiper.autoplay.running}
+			className='btnStart'
+			onClick={() => {
+				swiper.autoplay.start();
+			}}>
 			<FaPlay />
 		</button>
 	);
@@ -33,7 +41,9 @@ export default function Visual() {
 			</div>
 
 			<Swiper
-				modules={[Autoplay, Pagination]}
+				//Virtual 모듈 연결 (동적 요소 Slide 추가시에는 Virtaul 설정 추가해야함)
+				modules={[Autoplay, Pagination, Virtual]}
+				virtual
 				pagination={{ type: 'fraction' }}
 				slidesPerView={1}
 				spaceBetween={0}
@@ -51,13 +61,19 @@ export default function Visual() {
 				centeredSlides={true}
 				onSlideChange={el => setIndex(el.realIndex)}
 				autoplay={{ delay: 2000, disableOnInteraction: true }}
-				onSwiper={swiper => setTimeout(() => swiper.autoplay.start(), 1000)}>
+				onSwiper={swiper => {
+					setTimeout(() => {
+						swiper.slideNext();
+						swiper.autoplay.start();
+					}, 1000);
+				}}>
 				{/* 데이터배열을 통해 동적생성되고 있는 Slide 컴포넌트 */}
 				{isSuccess &&
 					data.map((pic, idx) => {
 						if (idx >= 10) return null;
 						return (
-							<SwiperSlide key={idx}>
+							//virtualIndex 추가 지정
+							<SwiperSlide key={pic} virtualIndex={idx}>
 								<div className='inner'>
 									<Pic src={`https://live.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}_b.jpg`} style={{ width: '100%', height: '100%' }} shadow />
 								</div>
