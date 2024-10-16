@@ -36,12 +36,6 @@
 			gap: 10px;
 		}
 	}
-
-	.btnMenuToggle {
-		font-size: 1.2rem;
-		color: #333;
-		display: none;
-	}
 }
 
 //기존 헤더 스타일을 그대로 유지하면서 main클래스만 추가되면 메인 전용 헤더스타일 추가
@@ -55,12 +49,8 @@
 
 @media screen and (max-width: $tablet) {
 	.header {
-		padding: 30px 10vw;
 		nav {
 			display: none;
-		}
-		.btnMenuToggle {
-			display: block;
 		}
 	}
 }

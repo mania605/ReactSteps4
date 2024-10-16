@@ -1,13 +1,10 @@
-import { FaBars, FaEnvelope, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FaEnvelope, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
-import MobileMenu from './MobileMenu';
-import { useState } from 'react';
 
 export default function Header() {
 	const gnbArr = ['members', 'gallery', 'youtube', 'contact', 'posts'];
 	const snsArr = [FaEnvelope, FaInstagram, FaYoutube];
 	const { pathname } = useLocation();
-	const [MobilePanel, setMobilePanel] = useState(false);
 
 	return (
 		<>
@@ -34,11 +31,7 @@ export default function Header() {
 						))}
 					</ul>
 				</nav>
-
-				<FaBars className='btnMenuToggle' onClick={() => setMobilePanel(!MobilePanel)} />
 			</header>
-
-			{MobilePanel && <MobileMenu />}
 		</>
 	);
 }
