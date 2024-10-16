@@ -24,16 +24,14 @@ export default function Visual() {
 			<Swiper
 				//autoplay 모듈 연결
 				modules={[Autoplay]}
-				slidesPerView={3}
-				spaceBetween={100}
-				loop={true}
-				centeredSlides={true}
-				onSlideChange={el => setIndex(el.realIndex)}
-				//autoplay 속성 (delay:인터벌시간, disableOnInteraction:true)
-				autoplay={{
-					delay: 1000,
-					disableOnInteraction: true
-				}}
+				slidesPerView={3}//한 화면에 보일 패널갯
+				spaceBetween={100}//패널사이간격
+				loop={true}//ture일때 좌우순환
+				centeredSlides={true} //복수개의 패널을 보이게 설정시 활성화 패널을 가운데 배치
+				onSlideChange={el => setIndex(el.realIndex)}//슬라이드 변경될 때마다 현재 활성화 패널순번을 index상태값에 저장(loop:ture)
+			
+				autoplay={{	delay: 2000,disableOnInteraction: true}} //autoplay 속성 (delay:인터벌시간, disableOnInteraction:true) 자동롤링시 인터벌 간격 2초, 사용자 이벤트 발생하면 롤링 중지, Swiper준비 완료시 파라미터로 swiper인스턴스 전달받고 해당 인스턴스로부터 전용 자동롤링 시작 메서드를 일초 있다가 강제 실행(SwiperSlide동적 생성시간 벌어줌)
+				
 				//스와이퍼기능이 아직 활성화되지 않은상태에서 autoplay가 적용안되는 이슈 발생
 				//onSwiper : 모든 스와이퍼 모듈을 불러온뒤에 기능 적용할 준비완료시
 				//해당 이벤트 발생시 자동적으로 파라미터를 통해 swiper인스턴스가 전달됨
