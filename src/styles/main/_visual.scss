@@ -30,6 +30,7 @@
 		height: 100%;
 		position: relative;
 		left: 200px;
+		z-index: 5;
 
 		.swiper-wrapper {
 			width: 100%;
@@ -80,7 +81,7 @@
 		position: absolute;
 		bottom: 5vh;
 		right: 30vw;
-		z-index: 3;
+		z-index: 11;
 		border: none;
 		background: transparent;
 		font-size: 1.4rem;
@@ -99,6 +100,23 @@
 		.swiper-pagination-current {
 			font-size: 5rem;
 			color: #111;
+		}
+	}
+}
+
+@media screen and (max-width: $tablet) {
+	.visual {
+		.textBox {
+			width: 80%;
+			left: 10%;
+			top: auto;
+			bottom: 20vh;
+			z-index: 4;
+		}
+
+		.swiper {
+			left: 0%;
+			padding: 10vh 10vw;
 		}
 	}
 }
