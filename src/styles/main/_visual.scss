@@ -87,4 +87,19 @@
 		color: #444;
 		cursor: pointer;
 	}
+
+	.swiper-pagination{
+		position: absolute;
+		top: 5vh;
+		right: 20vw;
+		z-index: 3;
+		font: 2rem italic 3rem/1 'raleway';
+		color: #888;
+
+		.swiper-pagination-current{
+			font-size: 6rem;
+			color:#111;
+			
+		}
+	}
 }

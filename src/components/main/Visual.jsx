@@ -5,15 +5,25 @@ import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import { useState } from 'react';
 import 'swiper/css';
+import { FaPlay } from 'react-icons/fa';
+import { Pagination, Navigation } from 'swiper/modules';
+
+
+
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
 
 //Swiper 컴포넌트 안쪽에서 호출할 자동롤링 시작 버튼 컴포넌트
 function BtnStart() {
 	//스와이퍼 전용 autoplay관련 메서드를 호출하기 위해서 useSwiper커스텀 훅으로 swiper 인스턴스 생성
 	const swiper = useSwiper();
+	console.log(swiper);
 
 	return (
-		<button className='btnStart' onClick={() => swiper.autoplay.start()}>
-			롤링시작
+		//hidden(true: 숨김, false:보임), disabled(true:기능비활성화, false:기능활성화)
+		<button hidden={swiper.autoplay.running} className='btnStart' onClick={() => swiper.autoplay.start()}>
+			<FaPlay />
 		</button>
 	);
 }
@@ -34,13 +44,17 @@ export default function Visual() {
 			</div>
 
 			<Swiper
-				modules={[Autoplay]}
+				modules={[Autoplay, Pagination, Navigation]}
+				pagination={{
+          type: 'fraction',
+        }}
+        navigation={false}
 				slidesPerView={3}
 				spaceBetween={100}
 				loop={true}
 				centeredSlides={true}
 				onSlideChange={el => setIndex(el.realIndex)}
-				autoplay={{ delay: 1000, disableOnInteraction: true }}
+				autoplay={{ delay: 2000, disableOnInteraction: true }}
 				onSwiper={swiper => setTimeout(() => swiper.autoplay.start(), 1000)}>
 				{/* 데이터배열을 통해 동적생성되고 있는 Slide 컴포넌트 */}
 				{isSuccess &&
@@ -58,6 +72,8 @@ export default function Visual() {
 				{/* 자동롤링 시작 버튼 컴포넌트 호출 */}
 				<BtnStart />
 			</Swiper>
+
+			
 		</figure>
 	);
 }
