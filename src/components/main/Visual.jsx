@@ -1,124 +1,89 @@
-.visual {
-	width: 100%;
-	height: 100vh;
-	overflow: hidden;
-	position: relative; //내부 swiper로 인해 가로, 세로 스크롤 생기는 문제 해결
+import { useFlickrQuery } from '../../hooks/useFlickr';
+import Pic from '../common/Pic';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { useState } from 'react';
+import { FaPlay } from 'react-icons/fa';
+//Virtual 모듈 가져옴
+import { Virtual } from 'swiper/modules';
+import 'swiper/css';
+//virtual css 가져옴
+import 'swiper/css/virtual';
 
-	.textBox {
-		position: absolute;
-		width: 30%;
-		left: 5%;
-		top: 30%;
+function BtnStart() {
+	const swiper = useSwiper();
 
-		h2 {
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			opacity: 0;
-			transform: scale(2);
-			font: 100 5vmax/1 'raleway';
-			color: #333;
-			transition: 0.5s;
-
-			&.on {
-				opacity: 1;
-				transform: scale(1);
-			}
-		}
-	}
-
-	.swiper {
-		width: 100%;
-		height: 100%;
-		position: relative;
-		left: 200px;
-		z-index: 5;
-
-		.swiper-wrapper {
-			width: 100%;
-			height: 100%;
-			padding: 20vh 0px;
-			box-sizing: border-box;
-
-			.swiper-slide {
-				width: 100%;
-				height: 100%;
-
-				.inner {
-					width: 100%;
-					height: 100%;
-					opacity: 0;
-					transform: scale(0.3);
-					transition: 0.5s;
-				}
-
-				//이전패널
-				&.swiper-slide-prev {
-					.inner {
-						opacity: 0;
-						transform: scale(1.5);
-					}
-				}
-
-				//활성화 패널
-				&.swiper-slide-active {
-					.inner {
-						opacity: 1;
-						transform: scale(1);
-					}
-				}
-
-				//다음 패널
-				&.swiper-slide-next {
-					.inner {
-						opacity: 0.5;
-						transform: scale(0.6);
-					}
-				}
-			}
-		}
-	}
-
-	.btnStart {
-		position: absolute;
-		bottom: 5vh;
-		right: 30vw;
-		z-index: 11;
-		border: none;
-		background: transparent;
-		font-size: 1.4rem;
-		color: #444;
-		cursor: pointer;
-	}
-
-	.swiper-pagination {
-		position: absolute;
-		top: 15vh;
-		right: 20vw;
-		z-index: 3;
-		font: 200 italic 2rem/1 'raleway';
-		color: #888;
-
-		.swiper-pagination-current {
-			font-size: 5rem;
-			color: #111;
-		}
-	}
+	return (
+		<button
+			hidden={swiper.autoplay.running}
+			className='btnStart'
+			onClick={() => {
+				swiper.autoplay.start();
+			}}>
+			<FaPlay />
+		</button>
+	);
 }
 
-@media screen and (max-width: $tablet) {
-	.visual {
-		.textBox {
-			width: 80%;
-			left: 10%;
-			top: auto;
-			bottom: 20vh;
-			z-index: 4;
-		}
+export default function Visual() {
+	const [Index, setIndex] = useState(0);
+	const { data, isSuccess } = useFlickrQuery({ type: 'mine' });
 
-		.swiper {
-			left: 0%;
-			padding: 10vh 10vw;
-		}
-	}
+	return (
+		<figure className='visual'>
+			<div className='textBox'>
+				{/* 이미지 타이틀정보만 별로 뽑아서 Swipe 변경시마다 해당 순번의 타이틀도 같이 모션 처리 */}
+				{data?.map((el, idx) => (
+					<h2 key={idx} className={Index === idx ? 'on' : ''}>
+						{el.title.substr(0, 30)}
+					</h2>
+				))}
+			</div>
+
+			<Swiper
+				//Virtual 모듈 연결 (동적 요소 Slide 추가시에는 Virtaul 설정 추가해야함)
+				modules={[Autoplay, Pagination, Virtual]}
+				virtual
+				pagination={{ type: 'fraction' }}
+				slidesPerView={1}
+				spaceBetween={0}
+				loop={true}
+				breakpoints={{
+					1000: {
+						slidesPerView: 2,
+						spaceBetween: 50
+					},
+					1400: {
+						slidesPerView: 3,
+						spaceBetween: 50
+					}
+				}}
+				centeredSlides={true}
+				onSlideChange={el => setIndex(el.realIndex)}
+				autoplay={{ delay: 2000, disableOnInteraction: true }}
+				onSwiper={swiper => {
+					setTimeout(() => {
+						swiper.slideNext();
+						swiper.autoplay.start();
+					}, 1000);
+				}}>
+				{/* 데이터배열을 통해 동적생성되고 있는 Slide 컴포넌트 */}
+				{isSuccess &&
+					data.map((pic, idx) => {
+						if (idx >= 10) return null;
+						return (
+							//virtualIndex 추가 지정
+							<SwiperSlide key={pic} virtualIndex={idx}>
+								<div className='inner'>
+									<Pic src={`https://live.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}_b.jpg`} style={{ width: '100%', height: '100%' }} shadow />
+								</div>
+							</SwiperSlide>
+						);
+					})}
+
+				{/* 자동롤링 시작 버튼 컴포넌트 호출 */}
+				<BtnStart />
+			</Swiper>
+		</figure>
+	);
 }
