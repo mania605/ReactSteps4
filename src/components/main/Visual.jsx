@@ -40,7 +40,7 @@ export default function Visual() {
 				loop={true}
 				centeredSlides={true}
 				onSlideChange={el => setIndex(el.realIndex)}
-				autoplay={{ delay: 2000, disableOnInteraction: true }}
+				autoplay={{ delay: 1000, disableOnInteraction: true }}
 				onSwiper={swiper => setTimeout(() => swiper.autoplay.start(), 1000)}>
 				{/* 데이터배열을 통해 동적생성되고 있는 Slide 컴포넌트 */}
 				{isSuccess &&

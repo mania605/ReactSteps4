@@ -78,8 +78,13 @@
 
 	.btnStart {
 		position: absolute;
-		bottom: 10vh;
-		left: 10vw;
+		bottom: 5vh;
+		right: 30vw;
 		z-index: 4;
+		border: none;
+		background: transparent;
+		font-size: 1.4rem;
+		color: #444;
+		cursor: pointer;
 	}
 }
