@@ -17,6 +17,7 @@
 			font: 100 5vmax/1 'raleway';
 			color: #333;
 			transition: 0.5s;
+
 			&.on {
 				opacity: 1;
 				transform: scale(1);
@@ -73,5 +74,12 @@
 				}
 			}
 		}
+	}
+
+	.btnStart {
+		position: absolute;
+		bottom: 10vh;
+		left: 10vw;
+		z-index: 4;
 	}
 }
