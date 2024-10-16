@@ -80,7 +80,7 @@
 		position: absolute;
 		bottom: 5vh;
 		right: 30vw;
-		z-index: 4;
+		z-index: 3;
 		border: none;
 		background: transparent;
 		font-size: 1.4rem;
@@ -88,18 +88,17 @@
 		cursor: pointer;
 	}
 
-	.swiper-pagination{
+	.swiper-pagination {
 		position: absolute;
-		top: 5vh;
+		top: 15vh;
 		right: 20vw;
 		z-index: 3;
-		font: 2rem italic 3rem/1 'raleway';
+		font: 200 italic 2rem/1 'raleway';
 		color: #888;
 
-		.swiper-pagination-current{
-			font-size: 6rem;
-			color:#111;
-			
+		.swiper-pagination-current {
+			font-size: 5rem;
+			color: #111;
 		}
 	}
 }
