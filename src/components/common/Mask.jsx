@@ -6,7 +6,8 @@ export default function Mask({ duration = 0.5, delay = 0, color = '#000', style 
 		height: '100%',
 		position: 'absolute',
 		top: 0,
-		backgroundColor: color
+		backgroundColor: color,
+		zIndex: 6
 	};
 
 	const maskMotion = {
