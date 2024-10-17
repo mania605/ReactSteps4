@@ -1,3 +1,10 @@
+import { useGlobalState } from '../../hooks/useGlobal';
+
 export default function MobileMenu() {
-	return <aside className='mobileMenu'>MobileMenu</aside>;
+	const { menuDispatch } = useGlobalState();
+	return (
+		<aside className='mobileMenu' onClick={() => menuDispatch({ type: 'CLOSE' })}>
+			MobileMenu
+		</aside>
+	);
 }

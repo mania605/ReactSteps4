@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useGlobalState } from '../../hooks/useGlobal';
 
 export default function Header() {
-	const { MobileOpen, setMobileOpen } = useGlobalState();
+	const { menuDispatch } = useGlobalState();
 	const gnbArr = ['members', 'gallery', 'youtube', 'contact', 'posts'];
 	const snsArr = [FaEnvelope, FaInstagram, FaYoutube];
 	const { pathname } = useLocation();
@@ -35,7 +35,7 @@ export default function Header() {
 					</ul>
 				</nav>
 
-				<span className='btnMobile' onClick={() => setMobileOpen(!MobileOpen)}>
+				<span className='btnMobile' onClick={() => menuDispatch({ type: 'TOGGLE' })}>
 					<FaBars />
 				</span>
 			</header>

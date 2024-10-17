@@ -1,18 +1,17 @@
-import { createContext, useContext, useReducer, useState } from 'react';
-
+import { createContext, useContext, useReducer } from 'react';
 /*
 	컴포넌트로 부터 리듀서가 전달받을 action객체 구조
 	{type:'요청타입', 변경할객체정보값 }
 */
 
 //각 리듀서함수에서 괄리할 초기 state값 생성
-const initModalState = { isOpen: false };
+const initMenuState = { isMenu: false };
 
 //위의 초기상태값, 액션타입을 활용해서 전역상태값을 변경해주는 변형자 함수 (리듀서)
-const modalReducer = (state, action) => {
-	if (action.type === 'OPEN') return { ...state, isOpen: true };
-	else if (action.type === 'CLOSE') return { ...state, isOpen: false };
-	else if (action.type === 'TOGGLE') return { ...state, isOpen: !state.isOpen };
+const menuReducer = (state, action) => {
+	if (action.type === 'OPEN') return { ...state, isMenu: true };
+	else if (action.type === 'CLOSE') return { ...state, isMenu: false };
+	else if (action.type === 'TOGGLE') return { ...state, isMenu: !state.isMenu };
 	else return state;
 };
 
@@ -21,8 +20,8 @@ export const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
 	//useReducer를 이용해서 첫번째 인수에는 리듀서함수, 두번째 인수에는 초기 상태값을
 	//변형된 상태값과 해당 상태를 변경할수 있는 action객체를 전달해주는 dispatch함수를 반환 받음
-	const [state, dispatch] = useReducer(modalReducer, initModalState);
-	return <GlobalContext.Provider value={{ state, dispatch }}>{children}</GlobalContext.Provider>;
+	const [MenuState, menuDispatch] = useReducer(menuReducer, initMenuState);
+	return <GlobalContext.Provider value={{ MenuState, menuDispatch }}>{children}</GlobalContext.Provider>;
 };
 
 export const useGlobalState = () => {
