@@ -13,7 +13,7 @@ import MobileMenu from './components/common/MobileMenu';
 import { useGlobalState } from './hooks/useGlobal';
 
 export default function App() {
-	const{MenuState} = useGlobalState();
+	const { store } = useGlobalState();
 	const location = useLocation();
 	return (
 		<>
@@ -31,7 +31,7 @@ export default function App() {
 				</Routes>
 			</AnimatePresence>
 
-			{MenuState.isMenu && <MobileMenu />}
+			{store.isMenu && <MobileMenu />}
 
 			<Footer />
 		</>

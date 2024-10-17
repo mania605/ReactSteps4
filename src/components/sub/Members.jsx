@@ -4,10 +4,8 @@ import Pic from '../common/Pic';
 import MaskBox from '../common/MaskBox';
 import MaskText from '../common/MaskText';
 import Content from '../common/Content';
-import { useGlobalState } from '../../hooks/useGlobal';
 
 export default function Members() {
-	const { menuDispatch } = useGlobalState();
 	return (
 		<Layout title={'MEMBERS'}>
 			<MaskText delay={1}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, ad?</MaskText>
@@ -19,7 +17,7 @@ export default function Members() {
 			<Content delay={1}>
 				<article className='ceoBox'>
 					<div className='txt'>
-					<h2 onClick={() => menuDispatch({ type: 'OPEN' })}>{memberData[0].name}</h2>
+						<h2>{memberData[0].name}</h2>
 						<p>{memberData[0].position}</p>
 					</div>
 
@@ -31,9 +29,7 @@ export default function Members() {
 				<article className='memberListBox'>
 					<div className='titBox'>
 						<h2>Our Team Members</h2>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora possimus non ipsa cum. Veritatis, dolore aliquam? Consectetur
-							assumenda dolor labore.
-						</p>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora possimus non ipsa cum. Veritatis, dolore aliquam? Consectetur assumenda dolor labore.</p>
 					</div>
 
 					<ul>
@@ -56,8 +52,8 @@ export default function Members() {
 					<div className='descBox'>
 						<h2>Lorem ipsum dolor sit.</h2>
 						<p>
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit. A esse cupiditate, vitae deleniti repellat explicabo sit, corrupti
-							beatae dicta, nulla optio corporis alias. Perferendis quidem sapiente minima, quisquam inventore soluta.
+							Lorem ipsum, dolor sit amet consectetur adipisicing elit. A esse cupiditate, vitae deleniti repellat explicabo sit, corrupti beatae dicta, nulla optio corporis alias.
+							Perferendis quidem sapiente minima, quisquam inventore soluta.
 						</p>
 					</div>
 				</article>
@@ -65,6 +61,7 @@ export default function Members() {
 		</Layout>
 	);
 }
+ 
 /*
 	미션
 	- MaskText컴포넌트 아래쪽의 전체 서브페이지의 콘텐츠를 일괄적으로 페이드모션 처리
