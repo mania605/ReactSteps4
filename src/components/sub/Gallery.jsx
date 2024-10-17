@@ -7,10 +7,8 @@ import { useFlickrQuery } from '../../hooks/useFlickr';
 import { useGlobalState } from '../../hooks/useGlobal';
 
 export default function Gallery() {
-	const abc = useGlobalState();
-	console.log(abc);
+	const { ModalOpen, setModalOpen } = useGlobalState();
 	const ref_gallery = useRef(null);
-	const [ModalOpen, setModalOpen] = useState(false);
 	const [Index, setIndex] = useState(0);
 	const [Type, setType] = useState({ type: 'mine' });
 	const { data: Flickr } = useFlickrQuery(Type);
@@ -82,7 +80,7 @@ export default function Gallery() {
 			</Layout>
 
 			{ModalOpen && (
-				<Modal setModalOpen={setModalOpen}>
+				<Modal>
 					<Pic src={`https://live.staticflickr.com/${Flickr[Index].server}/${Flickr[Index].id}_${Flickr[Index].secret}_b.jpg`} shadow />
 				</Modal>
 			)}
