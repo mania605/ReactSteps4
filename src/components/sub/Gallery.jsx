@@ -4,9 +4,10 @@ import Pic from '../common/Pic';
 import Modal from '../common/Modal';
 import Content from '../common/Content';
 import { useFlickrQuery } from '../../hooks/useFlickr';
-import { useGlobalData } from '../../hooks/useGlobalContext';
+import { useGlobalData } from '../../hooks/useGlobal';
 
 export default function Gallery() {
+const abc=useGlobalState();
 	const globalState = useGlobalData();
 	console.log(globalState);
 	const ref_gallery = useRef(null);

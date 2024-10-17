@@ -4,7 +4,7 @@ import './styles/index.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { GlobalProvider } from './hooks/useGlobalContext.js';
+import { GlobalProvider } from './hooks/useGlobal';
 
 //쿼리키 : 리액트가 서버데이터 fetching시 데이터의 구분을 하기위한 고유의 인식표
 //리액트는 해당 쿼리키를 통해 서버데이터의 차이점을 구분
