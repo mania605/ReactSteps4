@@ -37,6 +37,8 @@ export const useGlobalState = () => {
 	미리 지정한 리듀서 함수가 action객체를 dispatch를 통해 전달 받은 뒤
 	실제 action객체의 내용에 따라 전역 store의 데이터를 변경처리
 */
+
+
 /*
 	자가 진단 항목
 	1. createContext로 생성되는 GlobalContext는 모든 하위 컴포넌트에서 자유롭게 접근할 수 있는 전역 state공간
