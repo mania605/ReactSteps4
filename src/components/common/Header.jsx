@@ -4,7 +4,7 @@ import { useZustandStore } from '../../hooks/useZustand';
 
 export default function Header() {
 	console.log('header');
-	const { setMenuToggle } = useZustandStore();
+	const { setMenuToggle } = useZustandStore(state => state.setMenuToggle); // 필요한 상태만 구독
 
 	const gnbArr = ['members', 'gallery', 'youtube', 'contact', 'posts'];
 	const snsArr = [FaEnvelope, FaInstagram, FaYoutube];

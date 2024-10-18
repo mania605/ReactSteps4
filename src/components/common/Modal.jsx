@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 
 export default function Modal({ children }) {
 	console.log('modal');
-	const { setModalClose } = useZustandStore();
+	const setModalClose = useZustandStore(state => state.setModalClose); // 선택적 상태 구독
+
 	
 	return (
 		<motion.aside className='modal'>
