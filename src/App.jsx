@@ -13,6 +13,7 @@ import MobileMenu from './components/common/MobileMenu';
 import { useGlobalState } from './hooks/useGlobal';
 
 export default function App() {
+	console.log('App');
 	const location = useLocation();
 	const { store } = useGlobalState();
 	return (

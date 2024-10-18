@@ -1,6 +1,7 @@
 import { useGlobalState } from '../../hooks/useGlobal';
 
 export default function Modal({ children }) {
+	console.log('Modal');
 	//순서4- 모달 컴포넌트 내부에서 상태변경함수를 전역으로부터 바로 가져옴
 	const { dispatch } = useGlobalState();
 	return (

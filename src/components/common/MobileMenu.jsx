@@ -5,14 +5,13 @@ import useThrottle from '../../hooks/useThrottle';
 
 export default function MobileMenu() {
 	const { dispatch } = useGlobalState();
-
+	console.log('MobileMenu');
 	const { initial, animate, exit, transition } = {
 		initial: { x: -300, opacity: 0 },
 		animate: { x: 0, opacity: 1 },
 		exit: { x: -300, opacity: 0 },
 		transition: { duration: 0.5 }
 	};
-
 
 	const closeMenu = () => {
 		console.log('closeMenu');

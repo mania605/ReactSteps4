@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useGlobalState } from '../../hooks/useGlobal';
 
 export default function Header() {
+	console.log('Header');
 	const { dispatch } = useGlobalState();
 	const gnbArr = ['members', 'gallery', 'youtube', 'contact', 'posts'];
 	const snsArr = [FaEnvelope, FaInstagram, FaYoutube];
