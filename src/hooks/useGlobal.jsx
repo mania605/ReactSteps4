@@ -1,13 +1,10 @@
 import { createContext, useContext, useReducer } from 'react';
 
-const initState = { isMenu: false, isModal: false };
+const initState = { isMenu: false };
 
 const reducer = (state, action) => {
 	if (action.type === 'TOGGLE') return { ...state, isMenu: !state.isMenu };
 	if (action.type === 'CLOSE') return { ...state, isMenu: false };
-	
-	if (action.type === 'OPEN_MODAL') return { ...state, isModal: true };
-	if (action.type === 'CLOSE_MODAL') return { ...state, isModal: false };
 	else return state;
 };
 
