@@ -1,5 +1,6 @@
 import { FaBars, FaEnvelope, FaInstagram, FaYoutube } from 'react-icons/fa';
-import { Link, useLocation } from 'react-router-dom'; 
+import { Link, useLocation } from 'react-router-dom';
+import { useZustandStore } from '../../hooks/useZustand';
 
 export default function Header() {
 	console.log('header');

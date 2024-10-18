@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { useGlobalDispatch, ACTIONS } from '../../hooks/useGlobal';
-import { motion } from 'framer-motion'; 
+import { motion } from 'framer-motion';
+import useThrottle from '../../hooks/useThrottle';
+import { useZustandStore } from '../../hooks/useZustand';
 
 export default function MobileMenu() {
 	console.log('mobileMenu');

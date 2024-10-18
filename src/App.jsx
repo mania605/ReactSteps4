@@ -14,7 +14,7 @@ import { useZustandStore } from './hooks/useZustand';
 
 export default function App() {
 	const location = useLocation();
-	const { IsMenu } = useZunstandStore();
+	const { IsMenu } = useZustandStore();
 
 	return (
 		<>
