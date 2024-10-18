@@ -1,9 +1,9 @@
 import { FaBars, FaEnvelope, FaInstagram, FaYoutube } from 'react-icons/fa';
-import { Link, useLocation } from 'react-router-dom';
-import { useGlobalDispatch, ACTIONS } from '../../hooks/useGlobal';
+import { Link, useLocation } from 'react-router-dom'; 
 
 export default function Header() {
 	console.log('header');
+	const {setMenuToggle}=useZustandStore();
 	const { dispatch } = useGlobalDispatch();
 	const gnbArr = ['members', 'gallery', 'youtube', 'contact', 'posts'];
 	const snsArr = [FaEnvelope, FaInstagram, FaYoutube];
@@ -36,7 +36,7 @@ export default function Header() {
 					</ul>
 				</nav>
 
-				<span className='btnMobile' onClick={() => dispatch({ type: ACTIONS.SET_MENU_TOGGLE })}>
+				<span className='btnMobile' onClick={setMenuToggle}>
 					<FaBars />
 				</span>
 			</header>
