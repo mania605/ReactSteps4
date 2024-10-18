@@ -8,6 +8,7 @@ import { useGlobalDispatch, useGlobalState, ACTIONS } from '../../hooks/useGloba
 import { AnimatePresence } from 'framer-motion';
 
 export default function Gallery() { 
+	console.log('gallery');
 	const { store } = useGlobalState();
 	const { dispatch } = useGlobalDispatch();
 	const ref_gallery = useRef(null);

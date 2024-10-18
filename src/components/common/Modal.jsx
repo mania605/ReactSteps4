@@ -2,6 +2,7 @@ import { ACTIONS, useGlobalDispatch } from '../../hooks/useGlobal';
 import { motion } from 'framer-motion';
 
 export default function Modal({ children }) {
+	console.log('modal');
 	const { dispatch } = useGlobalDispatch();
 	return (
 		<motion.aside className='modal'>
