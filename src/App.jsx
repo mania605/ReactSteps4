@@ -11,6 +11,7 @@ import YoutubeDetail from './components/sub/YoutubeDetail';
 import { AnimatePresence } from 'framer-motion';
 import MobileMenu from './components/common/MobileMenu';
 import { useZustandStore } from './hooks/useZustand';
+import ColorSelector from './components/common/ColorSelector';
 
 export default function App() {
 	const location = useLocation();
@@ -32,6 +33,8 @@ export default function App() {
 				</Routes>
 			</AnimatePresence>
 
+<ColorSelector />
+		
 			<AnimatePresence>{IsMenu && <MobileMenu />}</AnimatePresence>
 
 			<Footer />
