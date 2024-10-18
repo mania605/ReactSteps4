@@ -5,7 +5,7 @@ import { useZustandStore } from '../../hooks/useZustand';
 
 export default function MobileMenu() {
 	console.log('mobileMenu');
-const {setMenuClose} = useZustandStore();
+const setMenuClose = useZustandStore(state=>state.setMenuClose);
 	const { initial, animate, exit, transition } = {
 		initial: { x: -300, opacity: 0 },
 		animate: { x: 0, opacity: 1 },
