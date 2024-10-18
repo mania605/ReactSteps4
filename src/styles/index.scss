@@ -2,6 +2,9 @@
 
 $tablet: 999px;
 $mobile: 599px;
+:root{
+  --keyColor : royalblue;
+}
 
 //common
 @import './common/reset';
@@ -22,3 +25,12 @@ $mobile: 599px;
 @import './sub/youtube';
 @import './sub/youtubeDetail';
 @import './sub/gallery';
+
+
+/*
+  리액트 혹은 일반 js로 스타일 파일의 변수값을 제어하고자할때 일반 scss파일의 변수는 제어 불가
+  - scss파일은 실제 브라우저가 해석해서 적용하는 스타일 파일이 아닌 리액트 작업물 빌드시에 일반 브라우저가 해석 간능한 일반 css로 변경되는 구조
+  - 사용자가 이벤트를 통해서 변수 색상값을 변경요청하는 시점 이미 scss파일이 일반 css로 변환완료된 시점이므로 scss의 변수값을 제어의미없음
+  일반 css의 변수는 js나 리액트가 추후 동적으로 변경처리가능한 이유
+  - 일반 css는 브라우저가 실시간으로 해석해서 변수명까지 cssDOM형태로 관리하고 있기때문에 DOM script를 이용해서 css변수는 제어 가능
+*/

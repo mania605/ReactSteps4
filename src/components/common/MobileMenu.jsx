@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 import useThrottle from '../../hooks/useThrottle';
 import { useZustandStore } from '../../hooks/useZustand';
 
-export default function MobileMenu() {
-	console.log('mobileMenu');
+export default function MobileMenu() { 
 const setMenuClose = useZustandStore(state=>state.setMenuClose);
 	const { initial, animate, exit, transition } = {
 		initial: { x: -300, opacity: 0 },
@@ -14,7 +13,6 @@ const setMenuClose = useZustandStore(state=>state.setMenuClose);
 	};
 
 	const closeMenu = () => {
-		console.log('closeMenu');
 		if (window.innerWidth >= 1000) setMenuClose();
 	};
 	const throttledCloseMenu = useThrottle(closeMenu);

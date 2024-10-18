@@ -13,10 +13,8 @@ import MobileMenu from './components/common/MobileMenu';
 import { useZustandStore } from './hooks/useZustand';
 
 export default function App() {
-	console.log('app');
 	const location = useLocation();
-	//루트 컴포넌트인 App에서 유일하게 사용되는 IsMenu전역 상태값을 선택적 상태 구독처리
-	const IsMenu = useZustandStore(state => state.IsMenu); // 상태 선택적 구독
+	const IsMenu = useZustandStore(state => state.IsMenu);
 
 	return (
 		<>
@@ -40,3 +38,9 @@ export default function App() {
 		</>
 	);
 }
+/*
+	Color Selector라는 컴포넌트를 통한 실시간 웹페이지 디자인 컬러 테마 변경
+	1.현재 기업형 프로젝트에서 키포인트로 활용될 만한 모든 요소의 색상값을 일반 css변수로 치환
+	2.키 컬러 선택 컴포넌트 추가후 해당 컴포넌트 컬러 선택 이벤트 발생
+	3.사용자 선택할 컬러값으로 css변수값을 변경
+*/

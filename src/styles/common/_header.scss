@@ -9,7 +9,7 @@
 
 	h1 {
 		font: 700 1.2rem/1 'orbitron';
-		color: #333;
+		color: var(--keyColor);
 		letter-spacing: 1px;
 	}
 
@@ -25,7 +25,7 @@
 			color: #888;
 
 			li.on {
-				color: #000;
+				color: var(--keyColor);
 			}
 		}
 

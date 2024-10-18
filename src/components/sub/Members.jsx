@@ -6,7 +6,6 @@ import MaskText from '../common/MaskText';
 import Content from '../common/Content';
 
 export default function Members() {
-	console.log('Members');
 	return (
 		<Layout title={'MEMBERS'}>
 			<MaskText delay={1}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, ad?</MaskText>
