@@ -15,7 +15,7 @@
 			opacity: 0;
 			transform: scale(2);
 			font: 100 5vmax/1 'raleway';
-			color: #333;
+			color:rgba(var(--keyRGB));
 			transition: 0.5s;
 
 			&.on {
@@ -85,7 +85,7 @@
 		border: none;
 		background: transparent;
 		font-size: 1.4rem;
-		color: #444;
+		color: rgba(var(--keyRGB), 0.7);
 		cursor: pointer;
 	}
 
@@ -99,7 +99,7 @@
 
 		.swiper-pagination-current {
 			font-size: 5rem;
-			color: #111;
+			color: rgba(var(--keyRGB), 0.8);
 		}
 	}
 }

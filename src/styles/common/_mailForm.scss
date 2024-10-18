@@ -29,7 +29,7 @@
 
 			//placeholer 요소 안쪽의 텍스트 스타일링
 			&::placeholder {
-				color: orangered;
+				color: rgba(var(--keyRGB), 0.6);
 				font: 400 0.8rem/1.2 'raleway';
 			}
 		}
@@ -61,7 +61,7 @@
 
 			input {
 				display: inline-block;
-				background: #333;
+				background:rgba(var(--keyRGB), 0.8);
 				border-radius: 3px;
 				padding: 10px 20px;
 				font: 300 0.6rem/1 'orbitron';
@@ -69,7 +69,7 @@
 				color: #fff;
 				cursor: pointer;
 				border: none;
-				box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05);
+				box-shadow: 5px 5px 10px rgba(var(--keyRGB), 0.05);
 			}
 		}
 	}

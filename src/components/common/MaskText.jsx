@@ -22,7 +22,7 @@ export default function MaskText({ children, duration = 0.5, delay = 0, color = 
 	};
 
 	return (
-		<div style={{ ...frameStyle, ...style }}>
+		<div style={{ ...frameStyle, ...style }} className='maskText'>
 			<motion.span initial={init} animate={active} exit={end} transition={time}>
 				{children}
 			</motion.span>

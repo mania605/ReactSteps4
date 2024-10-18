@@ -34,9 +34,9 @@ body {
 	background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(var(--keyRGB), 0.5);
 	border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-	background: rgba(0, 0, 0, 1);
+	background: rgba(var(--keyRGB), 1);
 }

@@ -13,7 +13,7 @@
 			li {
 				padding: 10px 20px;
 				border-radius: 4px;
-				background: #444;
+				background: rgba(var(--keyRGB), 0.8);
 				font: 400 0.7rem/1 'orbitron';
 				color: #fff;
 				letter-spacing: 1px;
@@ -38,7 +38,7 @@
 			}
 			button {
 				border: none;
-				background: #444;
+				background: rgba(var(--keyRGB), 0.8);
 				border-radius: 3px;
 				cursor: pointer;
 				font: 400 0.7rem/1 'orbitron';

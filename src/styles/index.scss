@@ -3,7 +3,31 @@
 $tablet: 999px;
 $mobile: 599px;
 :root{
-  --keyColor : royalblue;
+  --keyRGB :  0,120,150;
+
+
+
+}
+//rgba(var(--keyRGB), 0.5;
+//rgba(40,40,40,0/5);
+
+//black: 40,40,40;
+//hotpink: 184,0,190;
+//tealblue: 0,120,150;
+
+
+//scss파일 없이 동적으로 제어되는 스타일을 css변수로 제어가 필요할때 클래스명 부여후 !important로 우선순위 높여줌
+.mask{
+  background-color: rgba(var(--keyRGB), 0.8)  !important ;
+}
+
+.maskText{
+ background-color:  rgba(var(--keyRGB), 0.8)  !important ;
+}
+
+.test{
+  background: rgb(122, 22, 84);
+
 }
 
 //common
