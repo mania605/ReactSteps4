@@ -4,7 +4,7 @@ import './styles/index.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { GlobalProvider } from './hooks/useGlobal';
+import { GlobalProvider } from './GlobalProvider';
 
 const queryClient = new QueryClient();
 
