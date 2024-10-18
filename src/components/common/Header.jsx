@@ -1,10 +1,10 @@
 import { FaBars, FaEnvelope, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
-import { useGlobalState } from '../../hooks/useGlobal';
+import { useGlobalDispatch, ACTIONS } from '../../hooks/useGlobal';
 
 export default function Header() {
-	console.log('Header');
-	const { dispatch } = useGlobalState();
+	console.log('header');
+	const { dispatch } = useGlobalDispatch();
 	const gnbArr = ['members', 'gallery', 'youtube', 'contact', 'posts'];
 	const snsArr = [FaEnvelope, FaInstagram, FaYoutube];
 	const { pathname } = useLocation();
@@ -36,7 +36,7 @@ export default function Header() {
 					</ul>
 				</nav>
 
-				<span className='btnMobile' onClick={() => dispatch({ type: 'TOGGLE' })}>
+				<span className='btnMobile' onClick={() => dispatch({ type: ACTIONS.SET_MENU_TOGGLE })}>
 					<FaBars />
 				</span>
 			</header>

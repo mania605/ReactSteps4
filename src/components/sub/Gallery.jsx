@@ -4,11 +4,12 @@ import Pic from '../common/Pic';
 import Modal from '../common/Modal';
 import Content from '../common/Content';
 import { useFlickrQuery } from '../../hooks/useFlickr';
-import { useGlobalState } from '../../hooks/useGlobal';
+import { useGlobalDispatch, useGlobalState, ACTIONS } from '../../hooks/useGlobal';
+import { AnimatePresence } from 'framer-motion';
 
 export default function Gallery() { 
-	console.log('Gallery');
-	const { store, dispatch } = useGlobalState();
+	const { store } = useGlobalState();
+	const { dispatch } = useGlobalDispatch();
 	const ref_gallery = useRef(null);
 	const [Index, setIndex] = useState(0);
 	const [Type, setType] = useState({ type: 'mine' });
@@ -69,7 +70,7 @@ export default function Gallery() {
 								<article
 									key={idx}
 									onClick={() => {
-										dispatch({ type: 'OPEN_MODAL' });
+										dispatch({ type: ACTIONS.SET_MODAL_OPEN });
 										setIndex(idx);
 									}}>
 									<Pic src={`https://live.staticflickr.com/${data.server}/${data.id}_${data.secret}_z.jpg`} className='pic' shadow />
@@ -82,11 +83,13 @@ export default function Gallery() {
 			</Layout>
 
 
-			{store.isModal && (
-				<Modal>
-					<Pic src={`https://live.staticflickr.com/${Flickr[Index].server}/${Flickr[Index].id}_${Flickr[Index].secret}_b.jpg`} shadow />
-				</Modal>
-			)}
+			<AnimatePresence>
+				{store.isModal && (
+					<Modal>
+						<Pic src={`https://live.staticflickr.com/${Flickr[Index].server}/${Flickr[Index].id}_${Flickr[Index].secret}_b.jpg`} shadow />
+					</Modal>
+				)}
+			</AnimatePresence>
 		</>
 	);
 }

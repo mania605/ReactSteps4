@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import { useGlobalState } from '../../hooks/useGlobal';
+import { useGlobalDispatch, ACTIONS } from '../../hooks/useGlobal';
 import { motion } from 'framer-motion';
 import useThrottle from '../../hooks/useThrottle';
 
 export default function MobileMenu() {
-	const { dispatch } = useGlobalState();
+	console.log('mobileMenu');
+	const { dispatch } = useGlobalDispatch();
 	console.log('MobileMenu');
 	const { initial, animate, exit, transition } = {
 		initial: { x: -300, opacity: 0 },
@@ -25,7 +26,7 @@ export default function MobileMenu() {
 		return () => window.removeEventListener('resize', throttledCloseMenu);
 	}, [throttledCloseMenu]);
 	return (
-		<motion.aside className='mobileMenu' onClick={() => dispatch({ type: 'CLOSE' })} initial={initial} animate={animate} exit={exit} transition={transition}>
+		<motion.aside className='mobileMenu' onClick={() => dispatch({ type: ACTIONS.SET_MENU_CLOSE })} initial={initial} animate={animate} exit={exit} transition={transition}>
 			MobileMenu
 		</motion.aside>
 	);
