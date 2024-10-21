@@ -1,4 +1,6 @@
-$tablet_b: 1279px;
+$tablet_b: 1439px;
+$gap: 80px;
+$count: 4;
 
 .gallery {
 	.controller {
@@ -57,7 +59,7 @@ $tablet_b: 1279px;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: flex-start;
-		gap: 70px;
+		gap: $gap;
 		opacity: 0;
 		transform: translateY(100px);
 		transition: 0s;
@@ -68,10 +70,11 @@ $tablet_b: 1279px;
 			transition: 0.5s;
 		}
 
+		//미션 - 아래 코드의 자주변경될 만한 부분들을 관리하기 편하도록 변수로 추출 후 연동
 		article {
 			// 사이간격을 제외한 가로로 배치될 박스의 총합 = 전체 너비 - (사이간격 * 간격 갯수)
 			// 위에서 연산된 실젝 박스 너비 총합해서 / 가로로 배치할 박스 갯수
-			width: calc((100% - 70px * 3) / 4);
+			width: calc((100% - $gap * ($count - 1)) / $count);
 
 			.pic {
 				width: 100%;
@@ -82,10 +85,12 @@ $tablet_b: 1279px;
 }
 
 @media screen and (max-width: $tablet_b) {
+	$count: 3;
+
 	.gallery {
 		.galleryList {
 			article {
-				width: calc((100% - 70px * 2) / 3);
+				width: calc((100% - $gap * ($count - 1)) / $count);
 
 				.pic {
 					height: 30vw;
@@ -96,10 +101,12 @@ $tablet_b: 1279px;
 }
 
 @media screen and (max-width: $tablet) {
+	$count: 2;
+
 	.gallery {
 		.galleryList {
 			article {
-				width: calc((100% - 70px * 1) / 2);
+				width: calc((100% - $gap * ($count - 1)) / $count);
 
 				.pic {
 					height: 40vw;
@@ -110,10 +117,12 @@ $tablet_b: 1279px;
 }
 
 @media screen and (max-width: $mobile) {
+	$count: 1;
+
 	.gallery {
 		.galleryList {
 			article {
-				width: calc((100% - 70px * 0) / 1);
+				width: calc((100% - $gap * ($count - 1)) / $count);
 			}
 		}
 	}
