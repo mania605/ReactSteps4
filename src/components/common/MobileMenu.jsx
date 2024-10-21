@@ -24,7 +24,27 @@ const setMenuClose = useZustandStore(state=>state.setMenuClose);
 	}, [throttledCloseMenu]);
 	return (
 <motion.aside className='mobileMenu' onClick={setMenuClose} initial={initial} animate={animate} exit={exit} transition={transition}>
-			MobileMenu
+			<h1>
+				<Link to='/'>ALPACO</Link>
+			</h1>
+
+			<ul>
+				<li>
+					<Link to='/members'>MEMBERS</Link>
+				</li>
+				<li>
+				<Link to='/gallery'>GALLERY</Link>
+				</li>
+				<li>
+				<Link to='/youtube'>YOUTUBE</Link>
+				</li>
+				<li>
+				<Link to='/contact'>CONTACT</Link>
+				</li>
+				<li>
+				<Link to='/posts'>POSTS</Link>
+				</li>
+			</ul>
 		</motion.aside>
 	);
 }
