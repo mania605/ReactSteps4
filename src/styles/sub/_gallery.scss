@@ -13,6 +13,7 @@ $count: 4;
 		.type {
 			display: flex;
 			gap: 20px;
+			margin-bottom: 20px;
 
 			li {
 				padding: 10px 20px;
@@ -34,6 +35,7 @@ $count: 4;
 		form {
 			display: flex;
 			gap: 5px;
+			margin-bottom: 20px;
 
 			input {
 				border: 1px solid #888;
@@ -127,6 +129,25 @@ $count: 4;
 	$gap: 30px;
 
 	.gallery {
+		.controller {
+			form {
+				width: 100%;
+				display: flex;
+				flex-wrap: wrap;
+
+				input {
+					width: 100%;
+					margin-bottom: 5px;
+				}
+				button {
+					width: 100%;
+					height: 27px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+			}
+		}
 		.galleryList {
 			gap: $gap;
 
