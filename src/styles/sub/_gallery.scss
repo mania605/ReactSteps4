@@ -70,7 +70,7 @@ $count: 4;
 			transition: 0.5s;
 		}
 
-		//미션 - 아래 코드의 자주변경될 만한 부분들을 관리하기 편하도록 변수로 추출 후 연동
+		//미션 (10시 10분까지 ) - 아래 코드에서 미디어쿼리 구간마다 사이간격 변수로 변경 처리
 		article {
 			// 사이간격을 제외한 가로로 배치될 박스의 총합 = 전체 너비 - (사이간격 * 간격 갯수)
 			// 위에서 연산된 실젝 박스 너비 총합해서 / 가로로 배치할 박스 갯수
@@ -86,9 +86,12 @@ $count: 4;
 
 @media screen and (max-width: $tablet_b) {
 	$count: 3;
+	$gap: 60px;
 
 	.gallery {
 		.galleryList {
+			gap: $gap;
+
 			article {
 				width: calc((100% - $gap * ($count - 1)) / $count);
 
@@ -102,9 +105,12 @@ $count: 4;
 
 @media screen and (max-width: $tablet) {
 	$count: 2;
+	$gap: 40px;
 
 	.gallery {
 		.galleryList {
+			gap: $gap;
+
 			article {
 				width: calc((100% - $gap * ($count - 1)) / $count);
 
@@ -118,9 +124,12 @@ $count: 4;
 
 @media screen and (max-width: $mobile) {
 	$count: 1;
+	$gap: 30px;
 
 	.gallery {
 		.galleryList {
+			gap: $gap;
+
 			article {
 				width: calc((100% - $gap * ($count - 1)) / $count);
 			}
