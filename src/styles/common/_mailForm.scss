@@ -88,4 +88,19 @@
 			color: #777;
 		}
 	}
+
+	@media screen and (max-width: $tablet) {
+		.mailForm {
+			.formBox {
+				width: 100%;
+				padding-right: 0px;
+				margin-bottom: 80px;
+				border-right: none;
+			}
+			.info {
+				width: 100%;
+				padding-left: 0px;
+			}
+		}
+	}
 }
