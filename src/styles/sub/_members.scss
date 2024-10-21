@@ -26,6 +26,10 @@
 				font-size: 1.6rem;
 			}
 		}
+
+		.picWrapper {
+			width: 50% !important;
+		}
 	}
 
 	.memberListBox {
@@ -112,13 +116,19 @@
 			.txt {
 				width: 100%;
 				padding-bottom: 30px;
+				justify-content: flex-start;
+
+				& > * {
+					text-align: left !important;
+				}
+
 				h2 {
 					font-size: 1.8rem;
 				}
 			}
-			.pic {
-				width: 100%;
-				height: 40vh;
+			.picWrapper {
+				width: 100% !important;
+				height: 45vh !important;
 			}
 		}
 		.memberListBox {
@@ -139,8 +149,8 @@
 	.members {
 		.ceoBox {
 			margin-bottom: 80px;
-			.pic {
-				height: 30vh;
+			.picWrapper {
+				height: 30vh !important;
 			}
 		}
 		.memberListBox {
